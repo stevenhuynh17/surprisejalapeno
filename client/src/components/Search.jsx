@@ -1,4 +1,4 @@
-var Search = () => (
+const Search = () => (
   <div>
   </div>
 );

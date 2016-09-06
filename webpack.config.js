@@ -6,7 +6,10 @@ const buildPath = path.join(__dirname, 'client/dist');
 
 module.exports = {
   context: srcPath,
-  entry: srcPath,
+  entry: [path.join(srcPath, 'index.js'), 
+  path.join(srcPath, 'components/App.jsx'), 
+  path.join(srcPath, 'components/NewsView.jsx'), 
+  path.join(srcPath, 'components/Search.jsx')],
   output: {
     path: buildPath,
     filename: 'bundle.js'

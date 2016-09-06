@@ -21,7 +21,7 @@ class App extends React.Component {
           <Search />
         </div>
         <div>
-          <DataView />
+          <NewsView />
         </div>
       </div>
     );
