@@ -8,9 +8,10 @@ const Promise = require('bluebird');
 // with the body
 function getUrl(url) {
   return new Promise((fulfill, reject) => {
-    request.get(url, (err, data) => {
+    request.get(url, (err, response, body) => {
+    console.log(`Err, ${err} , response, ${response} , body, ${body}`);
       if (err) reject(err);
-      else fulfill(data.data);
+      else fulfill(body);
     });
   });
 }
