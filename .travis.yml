@@ -4,3 +4,5 @@ node_js:
 cache:
     directories:
         - node_modules
+notifications:
+  slack: hr46:fRVs8xJmS6yH1VOu1h8qLLIL
