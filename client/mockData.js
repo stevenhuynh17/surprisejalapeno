@@ -75,7 +75,7 @@ const fakeData = {
       topic: 'Weather'
     }
   ]
-}
+};
 
 var answer = JSON.stringify(fakeData);
 console.log(answer);
