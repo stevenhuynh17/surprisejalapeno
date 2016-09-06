@@ -1,6 +1,8 @@
-var path = require('path');
-var srcPath = path.join(__dirname, 'client/src');
-var buildPath = path.join(__dirname, 'client/dist');
+const path = require('path');
+
+const srcPath = path.join(__dirname, 'client/src');
+
+const buildPath = path.join(__dirname, 'client/dist');
 
 module.exports = {
   context: srcPath,

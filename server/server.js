@@ -13,8 +13,6 @@ require('./config/routes')(app, express);
 const port = process.env.PORT;
 // const port = 3000;
 
-app.listen(port, function() {
-  console.log('NewsMapper listening to port ' + port);
-});
+app.listen(port);
 
 module.exports = app;
