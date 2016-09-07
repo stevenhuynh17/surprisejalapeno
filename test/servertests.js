@@ -1,16 +1,14 @@
-import {describe, xdescribe, it} from 'chai';
+const expect = require('chai').expect;
 
 const bing = require('../server/api_controllers/bing');
-
-const request = require('supertest');
 
 const sinon = require('sinon');
 
 
-xdescribe('Bing API', () => {
+describe('Bing API', () => {
   let server;
   beforeEach(() => {
-     server = sinon.fakeServer.create();  
+    server = sinon.fakeServer.create();
   });
 
   afterEach(() => {
@@ -22,12 +20,11 @@ xdescribe('Bing API', () => {
   });
   describe('getStories', () => {
     it('should make a request to the Bing API', () => {
-        // ##TODO## write test
-        bing.getStories('Hello world!');
-        let req = server.requests[0];
-        //##FIGURETHISOUT##
-        expect(req.url).to.eql('');
-        expect(req.headers['Ocp-Apim-Subscription-Key']).to.exist();
+      bing.search('Hello world!');
+      console.log(server);
+      const req = server.requests[0];
+      expect(req.url).to.eql('https://api.cognitive.microsoft.com/bing/v5.0/news/search?q="Hello+world!');
+      expect(req.headers['Ocp-Apim-Subscription-Key']).to.exist();
     });
   });
 });

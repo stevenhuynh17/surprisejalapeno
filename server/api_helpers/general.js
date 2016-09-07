@@ -6,10 +6,15 @@ const Promise = require('bluebird');
 // sends a get request to the passed URL
 // and returns a promise that will be fulfilled
 // with the body
-function getUrl(url) {
+function getUrl(url, headers) {
   return new Promise((fulfill, reject) => {
-    request.get(url, (err, response, body) => {
-    console.log(`Err, ${err} , response, ${response} , body, ${body}`);
+    const options = {
+      method: 'GET',
+      url,
+      headers
+    };
+    request(options, (err, response, body) => {
+      console.log(`Err, ${err} , response, ${response} , body, ${body}`);
       if (err) reject(err);
       else fulfill(body);
     });

@@ -6,9 +6,17 @@ const baseUrl = 'https://api.cognitive.microsoft.com/bing/v5.0/news/search';
 
 function search(query) {
   let escapedQuery = query.split(' ').join('+');
-  escapedQuery = escapedQuery + '!';
+  escapedQuery = encodeURIComponent(escapedQuery);
   const qUrl = `${baseUrl}?q=${escapedQuery}`;
-  return helpers.getUrl(qUrl);
+  return helpers.getUrl(qUrl, creds.bing);
 }
 
+function searchHandler(req, res, next) {
+  search(req.query.q)
+  .then(d => res.json(d))
+  .catch(err => next(err));
+}
+
+
 exports.search = search;
+exports.searchHandler = searchHandler;
