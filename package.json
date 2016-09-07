@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "private": true,
+  "engines" : { "node" : ">=6.4.0" },
   "scripts": {
     "test": "grunt test",
     "start": "grunt"

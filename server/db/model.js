@@ -1,6 +1,6 @@
 const db = require('./config');
 
-exports = {
+module.exports = {
   news: {
     fetchAll() {
       return db.select().from('news')
