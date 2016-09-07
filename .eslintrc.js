@@ -15,7 +15,7 @@ module.exports = {
         1,
         "only-multiline"
       ],
-      "quotes": [
+     "quotes": [
         1,
         "single"
       ],

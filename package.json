@@ -31,9 +31,12 @@
     "eslint-plugin-react": "^6.0.0",
     "grunt-nodemon": "^0.4.2",
     "mocha": "^3.0.2",
+    "sinon": "^1.17.5",
+    "supertest": "^2.0.0",
     "webpack-dev-server": "^1.15.1"
   },
   "dependencies": {
+    "bluebird": "^3.4.6",
     "d3": "^4.2.2",
     "express": "^4.14.0",
     "grunt": "^1.0.1",
@@ -49,6 +52,7 @@
     "path": "^0.12.7",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
+    "request": "^2.74.0",
     "webpack": "^1.13.2"
   }
 }
