@@ -6,7 +6,7 @@ const sinon = require('sinon');
 
 
 describe('Bing API', () => {
-  let server;
+  var server;
   beforeEach(() => {
     server = sinon.fakeServer.create();
   });
@@ -18,13 +18,15 @@ describe('Bing API', () => {
   xit('should add a properly formatted response to the db', () => {
         // ##TODO## write test
   });
+
   describe('getStories', () => {
     it('should make a request to the Bing API', () => {
-      bing.search('Hello world!');
-      console.log(server);
-      const req = server.requests[0];
-      expect(req.url).to.eql('https://api.cognitive.microsoft.com/bing/v5.0/news/search?q="Hello+world!');
-      expect(req.headers['Ocp-Apim-Subscription-Key']).to.exist();
+      bing.search('Hello world!').then(() => {
+        const req = server.requests[0];
+        console.log(server);
+        expect(req.url).to.eql('https://api.cognitive.microsoft.com/bing/v5.0/news/search?q="Hello+world!');
+        expect(req.headers['Ocp-Apim-Subscription-Key']).to.exist();
+      });
     });
   });
 });
