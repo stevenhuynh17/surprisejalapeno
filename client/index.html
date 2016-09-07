@@ -5,21 +5,16 @@
   <title>NewsMapper</title>
   <!-- bootstrap cdn -->
   <link rel="stylesheet" href="styles/styles.css">
-  <!-- Cannot get jquery, react, react-dom files to load from node_modules. My sense is it is my computer setup that is having trouble with it somehow. // Corwin -->
-  <script src="../node_modules/react/dist/react.js"></script>
-  <script src="../node_modules/react-dom/dist/react-dom.js"></script>
-  <script src='../node_modules/jquery/dist/jquery.js'></script>
+  <script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react@15.3.1/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@15.3.1/dist/react-dom.js"></script>
 </head>
 <body>
+
   <div id="app">
     <h1>NewsMapper</h1>
   </div>
-  <!-- The commented out script tags are for when we get webpack working -->
   <script src="dist/bundle.js"></script>
-<!--   <script src="compiled/src/components/App.js"></script>
-  <script src="compiled/src/components/NewsView.js"></script>
-  <script src="compiled/src/components/Search.js"></script>
-  <script src="compiled/src/index.js"></script> -->
-
 </body>
+
 </html>
