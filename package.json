@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "test": "grunt test",
-    "start": "node server/server.js"
+    "start": "grunt"
   },
   "repository": {
     "type": "git",

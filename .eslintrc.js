@@ -29,6 +29,7 @@ module.exports = {
         100
       ],
       "no-var": 1,
+      "no-unused-vars": 1,
       "import/no-extraneous-dependencies": [
         2,
         {"devDependencies": true}
