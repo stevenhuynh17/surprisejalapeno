@@ -1,5 +1,3 @@
-const webpack = require('webpack');
-
 const path = require('path');
 
 const srcPath = path.join(__dirname, 'client/src');
@@ -7,7 +5,7 @@ const srcPath = path.join(__dirname, 'client/src');
 const buildPath = path.join(__dirname, 'client/dist');
 
 const config = {
-  entry: srcPath + '/components/App.jsx',
+  entry: path.join(srcPath, 'components/App.jsx'),
   output: {
     path: buildPath,
     filename: 'bundle.js'
