@@ -1,18 +1,33 @@
-const describe = require('chai').describe;
+import {describe, xdescribe, it} from 'chai';
 
-const xdescribe = require('chai').xdescribe;
+const bing = require('../server/api_controllers/bing');
 
-const it = require('chai').it;
+const request = require('supertest');
 
-const expect = require('chai').expect;
+const sinon = require('sinon');
 
-xdescribe('Feedzilla API', () => {
-  it('should add a properly formatted response to the db', () => {
+
+xdescribe('Bing API', () => {
+  let server;
+  beforeEach(() => {
+     server = sinon.fakeServer.create();  
+  });
+
+  afterEach(() => {
+    server.restore();
+  });
+
+  xit('should add a properly formatted response to the db', () => {
         // ##TODO## write test
   });
   describe('getStories', () => {
-    it('should make a request to the feedzilla API', () => {
+    it('should make a request to the Bing API', () => {
         // ##TODO## write test
+        bing.getStories('Hello world!');
+        let req = server.requests[0];
+        //##FIGURETHISOUT##
+        expect(req.url).to.eql('');
+        expect(req.headers['Ocp-Apim-Subscription-Key']).to.exist();
     });
   });
 });

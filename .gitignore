@@ -8,8 +8,12 @@ npm-debug.log
 ## Vim Swap files ##
 *~
 *.swp
+*.swo
 ## API Keys ##
+267c41109e0a44b81553ad2847aecd7c1cde1b2e
 
 ## Babel / Webpack ##
 client/compiled
 client/dist
+=======
+server/config/creds.js

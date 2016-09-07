@@ -32,6 +32,7 @@
     "grunt-nodemon": "^0.4.2",
     "mocha": "^3.0.2",
     "webpack-dev-server": "^1.15.1"
+    "supertest": "^2.0.0"
   },
   "dependencies": {
     "bluebird": "^3.4.6",
