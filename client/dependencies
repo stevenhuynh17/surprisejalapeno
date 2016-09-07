@@ -1,3 +1,0 @@
-For the front-end, you can either serve libraries locally from node_modules or some other folder or remotely from a CDN via a script tag. 
-
-Example: <script src="https://d3js.org/d3.v4.min.js"></script> vs. <script src="../node_modules/d3/d3.js"></script>
