@@ -8,7 +8,7 @@ function search(query) {
   let escapedQuery = query.split(' ').join('+');
   escapedQuery = encodeURIComponent(escapedQuery);
   const qUrl = `${baseUrl}?q=${escapedQuery}`;
-  return helpers.getUrl(qUrl, creds.bing);
+  return helpers.getUrl(qUrl, creds.bing || { 'Ocp-Apim-Subscription-Key': process.env.bing });
 }
 
 function searchHandler(req, res, next) {

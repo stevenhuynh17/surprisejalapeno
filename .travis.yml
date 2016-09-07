@@ -6,6 +6,3 @@ cache:
   - node_modules
 notifications:
   slack: hr46:fRVs8xJmS6yH1VOu1h8qLLIL
-before_install:
-- openssl aes-256-cbc -K $encrypted_cc6da939f804_key -iv $encrypted_cc6da939f804_iv
-  -in creds.js.enc -out server/config/creds.js -d
