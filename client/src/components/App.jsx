@@ -1,3 +1,8 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import NewsView from './NewsView.jsx';
+import Search from './Search.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -28,4 +33,4 @@ class App extends React.Component {
   }
 }
 
-window.App = App;
+ReactDOM.render(<App/>, document.getElementById('app'));
