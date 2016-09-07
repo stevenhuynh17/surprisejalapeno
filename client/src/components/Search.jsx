@@ -1,8 +1,9 @@
 import React from 'react';
 
-const Search = () => (
+const Search = (props) => (
   <div>
-    <h3>Search</h3>
+    <span>Find news in <input type="text" defaultValue="San Francisco" />
+    <button onSubmit={() => {props.onSearchSubmit(e)}}>Go</button></span>
   </div>
 );
 

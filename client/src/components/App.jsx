@@ -8,7 +8,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      // insert states
+      location: 'San Francisco'
     };
   }
 
@@ -16,7 +16,25 @@ class App extends React.Component {
     // on load
   }
 
-  // methods
+  onSearchSubmit (e) {
+    e.preventDefault();
+    this.setState({location: e.target.value});
+  }
+
+  getNewsByLocation (loc) {
+    $.ajax({
+      method: 'POST',
+      url: '/news',
+      dataType: 'json',
+      data: loc,
+      success: (data) => (
+        // plug into D3
+      ),
+      error: (err) => (
+        console.log('getNews err ', err);
+      )
+    })
+  }
 
   render() {
     return (
