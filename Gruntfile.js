@@ -28,6 +28,7 @@ module.exports = function gruntFun(grunt) {
         'client/*.js',
         'server/*.js',
         'server/**/*.js',
+        // let's ignore linting the test specs for now...
       ],
     },
   });
