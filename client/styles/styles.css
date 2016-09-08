@@ -1,3 +1,20 @@
+/***************** MAIN ******************/
+h1 {
+  font-size: 36px;
+  font-family: arial;
+}
+
+h2 {
+  font-size: 24px;
+  font-family: arial;
+  text-align: center;
+}
+
+section {
+  display: block;
+}
+
+/********** CSS FROM GEOSUGGEST *********/
 /**
  * The geosuggest module
  */

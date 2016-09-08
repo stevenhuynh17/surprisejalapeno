@@ -77,7 +77,9 @@ class App extends React.Component {
       dataType: 'json',
       data: {q: loc},
       success: (data) => {
+        console.log('success data:', data);
         this.setState({data: data}).bind(this);
+        console.log('this.state.data:', this.state.data);
         // plug data into D3:
         // either inside react app or send to new page w/ D3
       },
@@ -90,12 +92,12 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div>
+        <section>
           <Search props={this.props} handleSearchChange={this.handleSearchChange} handleSearchSubmit={this.handleSearchSubmit} handleSuggestionSelect={this.handleSuggestionSelect} />
-        </div>
-        <div>
+        </section>
+        <section>
           <NewsView props={this.props} data={this.state.data} />
-        </div>
+        </section>
       </div>
     );
   }
