@@ -2,8 +2,10 @@ import React from 'react';
 
 const Search = (props) => (
   <div>
-    <span>Find news in <input type="text" defaultValue="San Francisco" />
-    <button onSubmit={() => {props.onSearchSubmit(e)}}>Go</button></span>
+    <form onSubmit={props.handleSearchSubmit} >
+      <span>Find news in <input type="text" placeholder="San Francisco" value={props.location} onChange={props.handleSearchChange} /></span>
+    </form>
+    <div>{props.location}</div>
   </div>
 );
 
