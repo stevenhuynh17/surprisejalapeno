@@ -1,5 +1,7 @@
 const helpers = require('../api_helpers/general');
 
+
+
 const baseUrl = 'https://api.cognitive.microsoft.com/bing/v5.0/news/search';
 
 function search(query) {
@@ -9,9 +11,13 @@ function search(query) {
   return helpers.getUrl(qUrl, { 'Ocp-Apim-Subscription-Key': process.env.bing });
 }
 
+function resultsToDb (results) {
+    
+}
+
 function searchHandler(req, res, next) {
   search(req.query.q)
-  .then(d => res.json(d))
+  .then(d => res.json(d)) //add db logic
   .catch(err => next(err));
 }
 
