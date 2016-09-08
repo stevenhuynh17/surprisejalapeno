@@ -89,6 +89,17 @@ describe('MySQL DB', () => {
     .then(() => model.fetchAll())
     .then(result => {
       expect(result).to.have.lengthOf(2);
+      expect(result[1].id).to.equal(2);
+      done();
+    });
+  });
+
+  it('should return records by title', done => {
+    model.add(data2)
+    .then(() => model.getByTitle('Another test'))
+    .then(result => {
+      expect(result).to.have.lengthOf(1);
+      expect(result[0].title).to.equal('Another test');
       done();
     });
   });
