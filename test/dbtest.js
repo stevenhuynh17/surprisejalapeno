@@ -13,7 +13,17 @@ describe('MySQL DB', () => {
       .catch(err => console.log(`Error getting record by title ${err}`));
     },
     getByLocation(loc) {
-      return db('news').where('location', loc).orderBy('rating', 'desc')
+      return db
+      .select(db.raw(`*, (
+        3959 * acos(cos(radians(${loc.lat})) * cos(radians(lat)) * 
+        cos(radians(lng) - radians(${loc.lng})) + sin(radians(${loc.lat})) * 
+        sin(radians(lat)))
+        ) as distance`
+      ))
+      .from('news')
+      .having('distance', '<', loc.rad)
+      .orderBy('distance', 'asc')
+      .limit(100)
       .catch(err => console.log(`Error getting records by location ${err}`));
     },
     add(data) {
@@ -24,7 +34,8 @@ describe('MySQL DB', () => {
   const data1 = {
     title: 'Test',
     rating: 9000,
-    location: 'Nowhere, Kansas',
+    lat: 45.304369,
+    lng: -121.754757,
     category: 'Fake',
     description: '...it\'s a test',
     source: 'Al Jazeera',
@@ -34,7 +45,8 @@ describe('MySQL DB', () => {
   const data2 = {
     title: 'Another test',
     rating: 9001,
-    location: 'Somewhere, Oregon',
+    lat: 45.2829345,
+    lng: -121.796824,
     category: 'Fake',
     description: 'yet another test',
     source: 'The Onion',
@@ -59,7 +71,8 @@ describe('MySQL DB', () => {
           table.increments();
           table.string('title');
           table.integer('rating');
-          table.string('location');
+          table.decimal('lat', 10, 8);
+          table.decimal('lng', 11, 8);
           table.string('category');
           table.string('description');
           table.string('source');
@@ -100,6 +113,18 @@ describe('MySQL DB', () => {
     .then(result => {
       expect(result).to.have.lengthOf(1);
       expect(result[0].title).to.equal('Another test');
+      done();
+    });
+  });
+
+  it('should return records whose distance is within a certain radius of a location', done => {
+    // distance from loc to data1 ~ 0.98 miles
+    // distance from loc to data2 ~ 1.61 miles
+    model.add([data1, data2])
+    .then(() => model.getByLocation({ lat: 45.2929345, lng: -121.766824, rad: 1 }))
+    .then(result => {
+      expect(result).to.have.lengthOf(1);
+      expect(result[0].title).to.equal('Test');
       done();
     });
   });
