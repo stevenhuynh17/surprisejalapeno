@@ -44,20 +44,20 @@ class App extends React.Component {
   }
 
   handleSearchChange (e) {
-    // console.log('inside handleSearchChange');
+    console.log('inside handleSearchChange');
     e.preventDefault();
     this.setState({location: e.target.value});
   }
 
   handleSearchSubmit (e) {
-    // console.log('inside handleSearchSubmit');
+    console.log('inside handleSearchSubmit');
     e.preventDefault();
     const location = this.state.location;
     if (!location) {
       return;
     }
-    
-    // Clearing out input field not working -- maybe a feature
+
+    // Clearing out input field not working -- maybe a feature?
     // this.setState({location: ''});
     this.getNewsByLocation(location);
 
@@ -86,9 +86,6 @@ class App extends React.Component {
       <div>
         <div>
           <Search props={this.props} handleSearchChange={this.handleSearchChange} handleSearchSubmit={this.handleSearchSubmit} />
-        </div>
-        <div>
-          <span>{this.state.location}</span>
         </div>
         <div>
           <NewsView props={this.props} data={this.state.data} />
