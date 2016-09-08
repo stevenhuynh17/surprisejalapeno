@@ -11,6 +11,7 @@ npm-debug.log
 *.swo
 ## API Keys ##
 267c41109e0a44b81553ad2847aecd7c1cde1b2e
+client/config
 
 ## Babel / Webpack ##
 client/compiled

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import NewsView from './NewsView.jsx';
 import Search from './Search.jsx';
 import ArticleEntry from './ArticleEntry.jsx';
+import Geosuggest from 'react-geosuggest';
 
 // FOR TESTING // 
 // var dummyData = [
