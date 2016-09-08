@@ -13,7 +13,20 @@ module.exports = {
       .catch(err => console.log(`Error getting record by title ${err}`));
     },
     getByLocation(loc) {
-      return db('news').where('location', loc).orderBy('rating', 'desc')
+      // expect loc to be formatted as {lat, lng, rad} where rad = radius in miles to search within
+      // using Haversine Formula to calculate distances
+      // returns results in order of increasing distance from loc
+      return db
+      .select(db.raw(`select *, (
+        3959 * acos(cos(radians(${loc.lat})) * cos(radians(lat)) * 
+        cos(radians(lng) - radians(${loc.lng})) + sin(radians(${loc.lat})) * 
+        sin(radians(lat)))
+        ) as distance`
+      ))
+      .from('news')
+      .having('distance', '<', loc.rad)
+      .orderBy('distance', 'asc')
+      .limit(100)
       .catch(err => console.log(`Error getting records by location ${err}`));
     },
     add(data) {
