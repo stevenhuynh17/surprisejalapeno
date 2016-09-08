@@ -6,6 +6,14 @@ module.exports = {
       return db.select().from('news')
       .catch(err => console.log(`Error fetching data from "news" table ${err}`));
     },
+    getByTitle(title) {
+      return db('news').where('title', title)
+      .catch(err => console.log(`Error getting record by title ${err}`));
+    },
+    getByLocation(loc) {
+      return db('news').where('location', loc).orderBy('rating', 'desc')
+      .catch(err => console.log(`Error getting records by location ${err}`));
+    },
     add(data) {
       // expects data to be formatted as {title: '', rating: num, category: '', etc}
       // resolves promise with id of inserted record
