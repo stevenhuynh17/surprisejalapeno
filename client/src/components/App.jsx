@@ -66,10 +66,10 @@ class App extends React.Component {
   getNewsByLocation (loc) {
     console.log('inside getNewsByLocation');
     $.ajax({
-      method: 'POST',
-      url: '/news',
+      method: 'GET',
+      url: '/query',
       dataType: 'json',
-      data: loc,
+      data: {q: loc},
       success: (data) => {
         this.setState({data: data}).bind(this);
         // plug data into D3:
