@@ -6,8 +6,11 @@ const Search = (props) => (
     <form onSubmit={props.handleSearchSubmit} >
       <span>Find news in <input type="text" placeholder="San Francisco" value={props.location} onChange={props.handleSearchChange} /></span>
     </form>
-    <h3>Geosuggest test</h3>
-    <Geosuggest />
+    <Geosuggest
+      placeholder="San Francisco"
+      location={new google.maps.LatLng(37.773972, -122.431297)}
+      onSuggestSelect={props.handleSuggestionSelect}
+      radius="20" />
   </div>
 );
 
