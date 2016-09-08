@@ -1,6 +1,8 @@
 const db = require('./config');
 
 module.exports = {
+    // all methods return a promise
+    // getters resolve with -> [{...}, {...}, ...]
   news: {
     fetchAll() {
       return db.select().from('news')
@@ -15,8 +17,9 @@ module.exports = {
       .catch(err => console.log(`Error getting records by location ${err}`));
     },
     add(data) {
-      // expects data to be formatted as {title: '', rating: num, category: '', etc}
-      // resolves promise with id of inserted record
+      // expects data to be formatted as {title: '', rating: num, category: '', ...etc}
+      // can take an array of data objects -> [{...}, {...}, ...]
+      // resolves promise with id of first inserted record -> [id]
       return db('news').insert(data, 'id')
       .catch(err => console.log(`Error inserting into "news" table ${err}`));
     }
