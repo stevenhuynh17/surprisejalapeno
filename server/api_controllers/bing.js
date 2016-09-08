@@ -1,5 +1,4 @@
 const helpers = require('../api_helpers/general');
-const model = require('../db/model');
 
 const baseUrl = 'https://api.cognitive.microsoft.com/bing/v5.0/news/search';
 
@@ -12,7 +11,7 @@ function search(query) {
 
 function searchHandler(req, res, next) {
   search(req.query.q)
-  .then(d => res.json(d)) // add db logic
+  .then(d => res.json(d)) // db logic in the news controller
   .catch(err => next(err));
 }
 
