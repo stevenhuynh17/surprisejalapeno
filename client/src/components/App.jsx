@@ -77,9 +77,8 @@ class App extends React.Component {
       dataType: 'json',
       data: {q: loc},
       success: (data) => {
-        console.log('success data:', data);
-        this.setState({data: data}).bind(this);
-        console.log('this.state.data:', this.state.data);
+        data = JSON.parse(data);
+        this.setState({data: data.value});
         // plug data into D3:
         // either inside react app or send to new page w/ D3
       },
