@@ -14,6 +14,11 @@ section {
   display: block;
 }
 
+/********** FOR D3 STYLING **************/
+text {
+  font: 0.85em sans-serif;
+}
+
 /********** CSS FROM GEOSUGGEST *********/
 /**
  * The geosuggest module
