@@ -16,6 +16,7 @@ module.exports = {
       // expect loc to be formatted as {lat, lng, rad} where rad = radius in miles to search within
       // using Haversine Formula to calculate distances
       // returns results in order of increasing distance from loc
+      // also return a "distance" property that represents the entity's distance from the midpoint
       return db
       .select(db.raw(`select *, (
         3959 * acos(cos(radians(${loc.lat})) * cos(radians(lat)) * 
