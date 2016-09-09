@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "private": true,
-  "engines" : { "node" : ">=6.4.0" },
+  "engines": {
+    "node": ">=6.4.0"
+  },
   "scripts": {
     "test": "grunt test",
     "start": "grunt"
@@ -53,6 +55,7 @@
     "path": "^0.12.7",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
+    "react-geosuggest": "^1.25.0",
     "request": "^2.74.0",
     "webpack": "^1.13.2"
   }

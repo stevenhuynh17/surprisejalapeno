@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import NewsView from './NewsView.jsx';
 import Search from './Search.jsx';
 import ArticleEntry from './ArticleEntry.jsx';
+import Geosuggest from 'react-geosuggest';
 
 // FOR TESTING // 
 // var dummyData = [
@@ -40,6 +41,7 @@ class App extends React.Component {
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    this.handleSuggestionSelect = this.handleSuggestionSelect.bind(this);
     this.getNewsByLocation = this.getNewsByLocation.bind(this);
   }
 
@@ -57,10 +59,14 @@ class App extends React.Component {
       return;
     }
 
-    // Clearing out input field not working -- maybe a feature?
-    // this.setState({location: ''});
     this.getNewsByLocation(location);
+  }
 
+  handleSuggestionSelect (e) {
+    console.log('selection e:', e);
+    const loc = e.label;
+    this.setState({location: loc});
+    this.getNewsByLocation(loc);
   }
 
   getNewsByLocation (loc) {
@@ -71,7 +77,9 @@ class App extends React.Component {
       dataType: 'json',
       data: {q: loc},
       success: (data) => {
+        console.log('success data:', data);
         this.setState({data: data}).bind(this);
+        console.log('this.state.data:', this.state.data);
         // plug data into D3:
         // either inside react app or send to new page w/ D3
       },
@@ -84,12 +92,12 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <Search props={this.props} handleSearchChange={this.handleSearchChange} handleSearchSubmit={this.handleSearchSubmit} />
-        </div>
-        <div>
+        <section>
+          <Search props={this.props} handleSearchChange={this.handleSearchChange} handleSearchSubmit={this.handleSearchSubmit} handleSuggestionSelect={this.handleSuggestionSelect} />
+        </section>
+        <section>
           <NewsView props={this.props} data={this.state.data} />
-        </div>
+        </section>
       </div>
     );
   }
