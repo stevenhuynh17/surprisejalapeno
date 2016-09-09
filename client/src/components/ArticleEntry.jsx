@@ -2,7 +2,7 @@ import React from 'react';
 
 const ArticleEntry = (props) => (
   <div>
-    <h4>{props.article.title}</h4>
+    <h4>{props.article.name}</h4>
   </div>
 );
 
