@@ -92,12 +92,12 @@ describe('MySQL DB', () => {
 
   after(done => db.destroy(() => done()));
 
-  // it('should take data and insert it into a table', done => {
-  //   model.add(data1).then(id => {
-  //     expect(id).to.be.above(0);
-  //     done();
-  //   });
-  // });
+  it('should take data and insert it into a table', done => {
+    model.add(data1).then(id => {
+      expect(id).to.be.above(0);
+      done();
+    });
+  });
 
   it('should return all data in a table', done => {
     model.add([data1, data2])
@@ -120,8 +120,8 @@ describe('MySQL DB', () => {
   });
 
   it('should return records whose distance is within a certain radius of a location', done => {
-    // distance from loc to data1 ~ 0.98 miles
-    // distance from loc to data2 ~ 1.61 miles
+    // distance from loc to data1 ~ 0.984 miles
+    // distance from loc to data2 ~ 1.614 miles
     model.add([data1, data2])
     .then(() => model.getByLocation({ lat: 45.2929345, lng: -121.766824, rad: 1 }))
     .then(result => {
