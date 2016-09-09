@@ -3,7 +3,7 @@ const google = require('@google/maps');
 
 const googleMapsClient = google.createClient({ key: process.env.googleGeocode });
 
-const geocoder = new google.maps.Geocoder();
+// const geocoder = new google.maps.Geocoder();
 
 // const gCloud = require('google-cloud');
 // returns a promise that will (hopefully) be fulfilled by the Google API
