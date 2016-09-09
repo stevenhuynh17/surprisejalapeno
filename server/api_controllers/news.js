@@ -28,7 +28,8 @@ function handleSearch(req, res, next) {
 
 function handleSearch(req, res, next) {
   const location = req.params.q;
-  sherlock.getByLocation(location).then(d => res.json(d))
+  console.log(`Handle search with location ${location}`);
+  sherlock.getByPlace(location).then(d => res.json(d))
     .catch(e => next(e));
 }
 
