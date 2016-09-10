@@ -26,6 +26,10 @@ text {
   font: 0.85em sans-serif;
 }
 
+.bubble-legend {
+  display: none;
+}
+
 .bubble-chart-container {
   flex: 1;
   position: relative;
@@ -60,6 +64,10 @@ text {
 
 .medium {
   font-size: 0.8em;
+}
+
+.medium:hover {
+  font-size: 1em;
 }
 /********** CSS FROM GEOSUGGEST *********/
 /**
