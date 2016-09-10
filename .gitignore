@@ -9,12 +9,11 @@ npm-debug.log
 *~
 *.swp
 *.swo
+
 ## API Keys ##
-267c41109e0a44b81553ad2847aecd7c1cde1b2e
-client/config
+server/config/creds.js
 
 ## Babel / Webpack ##
+client/config
 client/compiled
 client/dist
-=======
-server/config/creds.js

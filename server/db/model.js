@@ -18,7 +18,7 @@ module.exports = {
       // returns results in order of increasing distance from loc
       // also return a "distance" property that represents the entity's distance from the midpoint
       return db
-      .select(db.raw(`select *, (
+      .select(db.raw(`*, (
         3959 * acos(cos(radians(${loc.lat})) * cos(radians(lat)) * 
         cos(radians(lng) - radians(${loc.lng})) + sin(radians(${loc.lat})) * 
         sin(radians(lat)))
