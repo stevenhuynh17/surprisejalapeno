@@ -14,11 +14,53 @@ section {
   display: block;
 }
 
+a {
+  margin-left: 20px;
+}
+
+a:hover, a:active {
+  color: #fff;
+}
 /********** FOR D3 STYLING **************/
 text {
   font: 0.85em sans-serif;
 }
 
+.bubble-chart-container {
+  flex: 1;
+  position: relative;
+  display: flex;
+  user-select: none;
+  justify-content: center;
+}
+
+.bubble-label {
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 50%;
+  will-change: left, top, height, width;
+}
+
+.bubble-label:hover {
+  overflow: visible;
+  font-weight: bold;
+}
+
+.small {
+  font-size: 0;
+}
+
+.small:hover {
+  font-size: 0.8em;
+}
+
+.medium {
+  font-size: 0.8em;
+}
 /********** CSS FROM GEOSUGGEST *********/
 /**
  * The geosuggest module

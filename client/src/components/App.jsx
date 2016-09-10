@@ -10,20 +10,20 @@ import BubbleChart from './BubbleChart.jsx';  //adding BubbleChart
 var dummyData = [
   {
     storyName: "example storyname 1",
-    newsCategory: "example category",
-    rating: 22,
+    newsCategory: 0.5,
+    rating: 15,
     url: "https://www.google.com/"
   },
   {
     storyName: "example storyname 1",
-    newsCategory: "example category",
-    rating: 22,
+    newsCategory: 0.7,
+    rating: 10,
     url: "https://www.google.com/"
   },
   {
     storyName: "example storyname 1",
-    newsCategory: "example category",
-    rating: 22,
+    newsCategory: 1,
+    rating: 30,
     url: "https://www.google.com/"
   }
 ];
