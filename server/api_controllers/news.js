@@ -8,30 +8,29 @@ const goog = require('../api_helpers/goog');
 
 
 function getGeo(ent) {
-    let max = 0;
-    let geo = { lat: 0, lng: 0 };
-    ent.forEach( e => {
-      if (e.disambiguated.geo && e.relevance > max) {
-        max = e.relevance;
-        let inter = e.disambiguated.geo.split(' ');
-        geo.lat = parseFloat(inter[0]);
-        geo.lng = parseFloat(inter[1]);
-      }
-    });
-    console.log('Got geo, ', geo);
-    return geo;
+  let max = 0;
+  const geo = { lat: 0, lng: 0 };
+  ent.forEach(e => {
+    if (e.disambiguated.geo && e.relevance > max) {
+      max = e.relevance;
+      const inter = e.disambiguated.geo.split(' ');
+      geo.lat = parseFloat(inter[0]);
+      geo.lng = parseFloat(inter[1]);
+    }
+  });
+  return geo;
 }
 
 function resultsToDb(results) {
   // trim results to the appropriate format
-  const toAdd = results.docs.map( doc => {
-    doc = doc.source;
-    const geo = getGeo(doc.enriched.url.entities);
+  const toAdd = results.docs.map(doc => {
+    const d = doc.source;
+    const geo = getGeo(d.enriched.url.entities);
     return {
-      category: doc.keywords,
-      title: doc.enriched.url.title,
-      description: doc.enriched.url.text,
-      url: doc.original.url,
+      category: d.enriched.url.keywords,
+      title: d.enriched.url.title,
+      description: d.enriched.url.text,
+      url: d.original.url,
       lat: geo.lat,
       lng: geo.lng
     };
@@ -56,12 +55,18 @@ function handleSearch(req, res, next) {
 function handleSearch(req, res, next) {
   const location = req.query.q;
   const locResult = goog.geocode(location); // probably needs to get parsed into lat/long
+
   sherlock.getByPlace(location).then(d => resultsToDb(d)).then(
       () => {
-        model.news.getByLocation(locResult) // this needs to be geocoded
-      .then(dbResponse => res.json(dbResponse));
-      }
-  )
+        locResult.then(l => {
+          const toSearch = l.json.results[0].geometry.location;
+          toSearch.rad = 25;
+          model.news.getByLocation(toSearch)
+         .then(dbResponse => {
+           res.json(dbResponse);
+         });
+        });
+      })
     .catch(e => next(e));
 }
 
