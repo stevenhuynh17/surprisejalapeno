@@ -13,7 +13,10 @@ function geocode(text) {
     console.log('Trying to geocode, ', text);
     googleMapsClient.geocode({ address: text }, (err, response) => {
       if (err) reject(err);
-      else fulfill(response);
+      else {
+        console.log('Got response from geocode, ', geocode);
+        fulfill(response);
+      }
     });
   });
 }

@@ -2,9 +2,10 @@
 
 const sherlock = require('../api_helpers/sherlock');
 
-// const goog = require('../api_helpers/goog');
+const model = require('../db/model');
 
-// const model = require('../db/model');
+const goog = require('../api_helpers/goog');
+
 
 /*
 function resultsToDb(results) {
@@ -28,8 +29,14 @@ function handleSearch(req, res, next) {
 
 function handleSearch(req, res, next) {
   const location = req.query.q;
+  const locResult = goog.geocode(location); // probably needs to get parsed into lat/long
   console.log(`Handle search with location ${location}`);
-  sherlock.getByPlace(location).then(d => res.json(d))
+  sherlock.getByPlace(location).then(d => model.news.add(d).then(
+      () => {
+        model.news.getByLocation(locResult) // this needs to be geocoded
+      .then(dbResponse => res.json(dbResponse));
+      }
+  ))
     .catch(e => next(e));
 }
 
