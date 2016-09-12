@@ -14,7 +14,6 @@ function getUrl(url, headers) {
       headers
     };
     request(options, (err, response, body) => {
-      console.log(`Err, ${err} , response, ${response} , body, ${body}`);
       if (err) reject(err);
       else fulfill(body);
     });

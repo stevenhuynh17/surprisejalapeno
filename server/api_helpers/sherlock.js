@@ -1,27 +1,25 @@
-const request = require('request');
+const helpers = require('../api_helpers/general');
+
+const qs = require('querystring');
 
 // given a placename, returns all news articles with that entity in the title
 // and body
 function getByPlace(place) {
-  const getUrl = 'https://gateway-a.watsonplatform.net/calls/data/GetNews';
-  let toSend = place.split(' ').join('+');
-  toSend = encodeURIComponent(toSend);
+  let qUrl = `https://gateway-a.watsonplatform.net/calls/data/GetNews`;
   const queries = {
     outputMode: 'json',
     start: 'now-1d',
     end: 'now',
     count: 25,
-    'q.enriched.url.enrichedTitle.entities.entity': `|text=${toSend},type=place|`,
-    return: 'enriched.url.title',
+    return: 'enriched.url.title,enriched.url.text,original.url,enriched.url.entities,enriched.url.publicationDate.date',
     apikey: process.env.alchemy
   };
-  return new Promise((fulfill, reject) => {
-    console.log(`getUrl is ${getUrl}, queries are ${queries}`);
-    request({ url: getUrl, options: queries }, (err, response) => {
-      if (err) reject(err);
-      else fulfill(response);
-    });
-  });
+  let escapedPlace = place.split(' ').join('+');
+  escapedPlace = encodeURIComponent(escapedPlace);
+  qUrl = qUrl + '?' + qs.stringify(queries);
+  // getUrl += `&q.enriched.url.enrichedTitle.entities.entity=|text=${escapedPlace},type=place|`;
+  qUrl += `&q.enriched.url.entities.entity=|text=${escapedPlace}|`;
+  return helpers.getUrl(qUrl).then(d => JSON.parse(d).result);
 }
 
 exports.getByPlace = getByPlace;
