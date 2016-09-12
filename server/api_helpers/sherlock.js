@@ -10,7 +10,7 @@ function getByPlace(place) {
     outputMode: 'json',
     start: 'now-1d',
     end: 'now',
-    count: 25,
+    count: 100,
     return: 'enriched.url.title,enriched.url.text,original.url,enriched.url.entities,enriched.url.publicationDate.date',
     apikey: process.env.alchemy
   };
