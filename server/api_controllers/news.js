@@ -18,7 +18,6 @@ function getGeo(ent) {
         geo.lng = parseFloat(inter[1]);
       }
     });
-    console.log('Got geo, ', geo);
     return geo;
 }
 
@@ -28,7 +27,7 @@ function resultsToDb(results) {
     doc = doc.source;
     const geo = getGeo(doc.enriched.url.entities);
     return {
-      category: doc.keywords,
+      category: doc.enriched.url.keywords,
       title: doc.enriched.url.title,
       description: doc.enriched.url.text,
       url: doc.original.url,
@@ -64,8 +63,12 @@ function handleSearch(req, res, next) {
   sherlock.getByPlace(location).then(d => resultsToDb(d)).then(
       () => {
         locResult.then(l => {
-          model.news.getByLocation(l.json.results[0].geometry.location)
-         .then(dbResponse => res.json(dbResponse));
+          let toSearch = l.json.results[0].geometry.location;
+          toSearch.rad = 25;
+          model.news.getByLocation(toSearch)
+         .then(dbResponse => {
+             res.json(dbResponse)
+         });
         });
       })
     .catch(e => next(e));
