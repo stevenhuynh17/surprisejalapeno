@@ -5,7 +5,7 @@ const bing = require('../server/api_controllers/bing');
 const sinon = require('sinon');
 
 
-describe('Bing API', () => {
+xdescribe('Bing API', () => {
   var server;
   beforeEach(() => {
     server = sinon.fakeServer.create();

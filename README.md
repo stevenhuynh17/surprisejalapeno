@@ -21,7 +21,9 @@
 ## Usage
 
 > Search by location to find top news for the area.
+> Make sure you have the environment variable 'alchemy' set to the alchemy api key
 > To launch the app, install the dependencies and run 'grunt'.
+> Then navigate to the server's ip address. (Defaults to: localhost:3000)
 
 ## Requirements
 
@@ -59,6 +61,7 @@ From within the root directory:
 npm install -g webpack
 npm install -g grunt-cli
 npm install
+webpack
 ```
 
 ### Roadmap

@@ -113,10 +113,10 @@ class App extends React.Component {
       success: (data) => {
         data = JSON.parse(data);
         this.setState({data: data.value});
-      },  
+      },
       error: (err) => {
         console.log('getNews err ', err);
-      }   
+      }
     })
   }
 

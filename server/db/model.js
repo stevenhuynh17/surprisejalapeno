@@ -28,7 +28,7 @@ module.exports = {
       .having('distance', '<', loc.rad)
       .orderBy('distance', 'asc')
       .limit(100)
-      .catch(err => console.log(`Error getting records by location ${err}`));
+      .catch(err => console.log('Error getting by location'));
     },
     add(data) {
       // expects data to be formatted as {title: '', rating: num, category: '', ...etc}

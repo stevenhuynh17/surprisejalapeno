@@ -11,7 +11,7 @@ function search(query) {
 
 function searchHandler(req, res, next) {
   search(req.query.q)
-  .then(d => res.json(d))
+  .then(d => res.json(d)) // db logic in the news controller
   .catch(err => next(err));
 }
 
