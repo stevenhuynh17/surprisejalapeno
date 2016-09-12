@@ -56,12 +56,18 @@ function handleSearch(req, res, next) {
 function handleSearch(req, res, next) {
   const location = req.query.q;
   const locResult = goog.geocode(location); // probably needs to get parsed into lat/long
+  //testing after here
+  locResult.then( d => {
+  console.log('Geo code result is , ', d.json.results[0].geometry.location);
+  });
+
   sherlock.getByPlace(location).then(d => resultsToDb(d)).then(
       () => {
-        model.news.getByLocation(locResult) // this needs to be geocoded
-      .then(dbResponse => res.json(dbResponse));
-      }
-  )
+        locResult.then(l => {
+          model.news.getByLocation(l.json.results[0].geometry.location)
+         .then(dbResponse => res.json(dbResponse));
+        });
+      })
     .catch(e => next(e));
 }
 
