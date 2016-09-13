@@ -7,4 +7,4 @@ cache:
 notifications:
   slack: hr46:zi9kNkElRi7scpZXZL7DHNXy
 after_success:
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./travis/push_prod; fi'
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./.travis/push_prod; fi'
