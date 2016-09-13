@@ -1,14 +1,17 @@
 module.exports = {
-    "extends": "airbnb",
+    "extends": [
+        "airbnb",
+        "plugin:react/recommended"
+    ],
     "plugins": [
-        "react",
-        "jsx-a11y",
-        "import"
+        "react"
     ],
     "env": {
       "browser": true,
       "node": true,
-      "mocha": true
+      "mocha": true,
+      "es6": true,
+      "commonjs": true
     },
     "rules": {
       "comma-dangle": [
@@ -26,10 +29,12 @@ module.exports = {
       "space-before-function-paren": 1,
       "max-len": [
         1,
-        100
+        80
       ],
-      "no-var": 1,
       "no-unused-vars": 1,
+      "no-unused-expressions": "warn",
+      "no-param-reassign": "warn",
+      "no-console": "warn",
       "import/no-extraneous-dependencies": [
         2,
         {"devDependencies": true}

@@ -2,11 +2,12 @@ const knex = require('knex');
 const expect = require('chai').expect;
 
 describe('MySQL DB', () => {
-  var db;
+  let db;
   const model = {
     fetchAll() {
       return db.select().from('news')
-      .catch(err => console.log(`Error fetching data from "news" table ${err}`));
+      .catch(err =>
+        console.log(`Error fetching data from "news" table ${err}`));
     },
     getByTitle(title) {
       return db('news').where('title', title)
@@ -15,8 +16,8 @@ describe('MySQL DB', () => {
     getByLocation(loc) {
       return db
       .select(db.raw(`*, (
-        3959 * acos(cos(radians(${loc.lat})) * cos(radians(lat)) * 
-        cos(radians(lng) - radians(${loc.lng})) + sin(radians(${loc.lat})) * 
+        3959 * acos(cos(radians(${loc.lat})) * cos(radians(lat)) *
+        cos(radians(lng) - radians(${loc.lng})) + sin(radians(${loc.lat})) *
         sin(radians(lat)))
         ) as distance`
       ))
