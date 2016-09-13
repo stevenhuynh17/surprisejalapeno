@@ -13,7 +13,7 @@ function getByPlace(place) {
     outputMode: 'json',
     start: 'now-1d',
     end: 'now',
-    count: 100,
+    count: 50,
     return: 'enriched.url.title,enriched.url.text,original.url,enriched.url.entities,enriched.url.publicationDate.date',
     apikey: process.env.alchemy
   };
@@ -24,7 +24,14 @@ function getByPlace(place) {
   // Append the entity search to the base url.
   qUrl += `&q.enriched.url.entities.entity=|text=${place}|`;
   // return a promise from the helpers geturl function
-  return helpers.getUrl(qUrl).then(d => JSON.parse(d).result);
+  return helpers.getUrl(qUrl).then(d => {
+    let resp = JSON.parse(d);
+      if (resp.status !== 'OK') {
+          console.log('Status is, ', resp);
+          console.log(k);
+          console.log('Bad response from watson for query, ' , place);
+      } else return resp.result;
+  });
 }
 
 exports.getByPlace = getByPlace;
