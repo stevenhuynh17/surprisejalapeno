@@ -14,4 +14,8 @@ const Search = (props) => (
   </div>
 );
 
+Search.propTypes = {
+  handleSuggestionSelect: React.PropTypes.func
+};
+
 export default Search;

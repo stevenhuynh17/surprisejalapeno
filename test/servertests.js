@@ -6,7 +6,7 @@ const sinon = require('sinon');
 
 
 xdescribe('Bing API', () => {
-  var server;
+  let server;
   beforeEach(() => {
     server = sinon.fakeServer.create();
   });
@@ -24,7 +24,8 @@ xdescribe('Bing API', () => {
       bing.search('Hello world!').then(() => {
         const req = server.requests[0];
         console.log(server);
-        expect(req.url).to.eql('https://api.cognitive.microsoft.com/bing/v5.0/news/search?q="Hello+world!');
+        expect(req.url).to.eql('https://api.cognitive.microsoft.com/bing/'
+            + 'v5.0/news/search?q="Hello+world!');
         expect(req.headers['Ocp-Apim-Subscription-Key']).to.exist();
       });
     });

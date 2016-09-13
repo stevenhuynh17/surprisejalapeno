@@ -6,4 +6,8 @@ const ArticleEntry = (props) => (
   </div>
 );
 
+ArticleEntry.propTypes = {
+  article: React.PropTypes.object
+};
+
 export default ArticleEntry;
