@@ -10,7 +10,8 @@
   "scripts": {
     "test": "grunt test",
     "start": "grunt",
-    "dev": "webpack -d --watch"
+    "dev": "webpack -d --watch",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
