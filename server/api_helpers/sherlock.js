@@ -29,7 +29,9 @@ function getByPlace(place) {
     if (resp.status !== 'OK') {
       console.log('Status is, ', resp);
       console.log('Bad response from watson for query, ', place);
-    } else return resp.result;
+    }
+
+    return resp.result;
   });
 }
 
