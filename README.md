@@ -1,4 +1,5 @@
 # Surprise Jalapeño: NewsMapper
+[![Build Status](https://travis-ci.org/clueless-cello/surprisejalapeno.svg?branch=master)](https://travis-ci.org/clueless-cello/surprisejalapeno)
 
 > Search by location to get top news from around the globe.
 
