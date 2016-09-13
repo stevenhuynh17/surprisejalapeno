@@ -132,14 +132,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    ////////start testing//////////
-    //to assign a random category (will come from db later)
-    const getCategory = function() {
-      return Math.floor(Math.random() * 4);
-    };
+    // //////start testing//////////
+    // to assign a random category (will come from db later)
+    const getCategory = () => Math.floor(Math.random() * 4);
 
-    //to assign a random rating (will come from db later)
-    const getRating = function() {
+    // to assign a random rating (will come from db later)
+    const getRating = () => {
       const ratings = [4, 6, 8, 10, 11, 8, 20];
       const rating = ratings[Math.floor(Math.random() * ratings.length)];
       return rating;
@@ -147,18 +145,20 @@ class App extends React.Component {
 
     console.log(getRating());
 
-    //iterate through story objects and assign random category and rating
+    // iterate through story objects and assign random category and rating
     dummyData.forEach((storyObj) => {
+      const testObj = storyObj;
       const category1 = getCategory();
       const rating = getRating();
-      storyObj.newsCategory = category1;
-      storyObj.rating = rating;
+      testObj.newsCategory = category1;
+      testObj.rating = rating;
     });
-    ///////end testing///////////
+    // /////end testing///////////
 
     this.state = {
       location: '',
-      data: [],    //remember to change back to empty array after done using dummy data
+      // remember to change back to empty array after done using dummy data
+      data: [],
       numBubbles: 0
     };
 
@@ -169,7 +169,7 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  getNewsByLocation (loc) {
+  getNewsByLocation(loc) {
     console.log('inside getNewsByLocation');
     const query = loc.split(' ').join('+');
     const encoded = encodeURIComponent(query);
@@ -182,13 +182,11 @@ class App extends React.Component {
       success: (data) => {
         // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
 
-        //to assign a random category (will come from db later)
-        const getCategory = function() {
-          return Math.floor(Math.random() * 4);
-        };
+        // to assign a random category (will come from db later)
+        const getCategory = () => Math.floor(Math.random() * 4);
 
-        //to assign a random rating (will come from db later)
-        const getRating = function() {
+        // to assign a random rating (will come from db later)
+        const getRating = () => {
           const ratings = [4, 6, 8, 10, 11, 8, 20];
           const rating = ratings[Math.floor(Math.random() * ratings.length)];
           return rating;
@@ -196,15 +194,17 @@ class App extends React.Component {
 
         console.log(getRating());
 
-        //iterate through story objects and assign random category and rating
+        // iterate through story objects and assign random category and rating
         data.forEach((storyObj) => {
+          const testObj = storyObj;
           const category1 = getCategory();
           const rating = getRating();
-          storyObj.newsCategory = category1;
-          storyObj.rating = rating;
+          testObj.newsCategory = category1;
+          testObj.rating = rating;
         });
 
-        this.setState({ data, numBubbles: data.length }); //changed from data.value
+        // changed from data.value
+        this.setState({ data, numBubbles: data.length });
       },
 
       error: (err) => {
@@ -213,14 +213,14 @@ class App extends React.Component {
     });
   }
 
-  handleSuggestionSelect (e) {
+  handleSuggestionSelect(e) {
     console.log('selection e:', e);
     const loc = e.label;
     this.setState({ location: loc });
     this.getNewsByLocation(loc);
   }
 
-  handleSearchSubmit (e) {
+  handleSearchSubmit(e) {
     console.log('inside handleSearchSubmit');
     e.preventDefault();
     const location = this.state.location;
@@ -231,13 +231,13 @@ class App extends React.Component {
     this.getNewsByLocation(location);
   }
 
-  handleSearchChange (e) {
+  handleSearchChange(e) {
     console.log('inside handleSearchChange');
     e.preventDefault();
     this.setState({ location: e.target.value });
   }
 
-  handleClick (d) {
+  handleClick(d) {
     console.log('inside handleClick, d:', d);
     window.open(d.url);
   }
@@ -246,7 +246,12 @@ class App extends React.Component {
     return (
       <div>
         <section>
-          <Search props={this.props} handleSearchChange={this.handleSearchChange} handleSearchSubmit={this.handleSearchSubmit} handleSuggestionSelect={this.handleSuggestionSelect} />
+          <Search
+            props={this.props}
+            handleSearchChange={this.handleSearchChange}
+            handleSearchSubmit={this.handleSearchSubmit}
+            handleSuggestionSelect={this.handleSuggestionSelect}
+          />
         </section>
         <section>
           <BubbleChart data={this.state.data} handleClick={this.handleClick} />
