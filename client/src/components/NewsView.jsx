@@ -11,4 +11,8 @@ const NewsView = (props) => (
   </div>
 );
 
+NewsView.propTypes = {
+  data: React.PropTypes.array
+};
+
 export default NewsView;
