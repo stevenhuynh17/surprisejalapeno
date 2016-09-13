@@ -41,10 +41,10 @@ const BubbleChart = ({ data, handleClick }) => (
     legend={false}                     // if true, create and show a legend based on the passed colors
     selectedColor="#737373"            // for when bubble is 'selected'
     selectedTextColor="#d9d9d9"        // for when bubble is 'selected'
-    fixedDomain={{ min: 0, max: 3 }}    // works with color legend - see react-bubble-chart docs
-    onClick={handleClick}                         // NEED TO SET CLICK HANDLER HERE FOR OPENING NEWS URL:  onClick={}
+    fixedDomain={{ min: 0, max: 3 }}   // works with color legend - see react-bubble-chart docs
+    onClick={handleClick}              // NEED TO SET CLICK HANDLER HERE FOR OPENING NEWS URL:  onClick={}
     data={data.map(d => ({
-      _id: getID(), // string, unique id (required) --> we didn't have this before React
+      _id: getID(),           // string, unique id (required) --> we didn't have this before React
       value: d.rating,             // number, to determine relative size of bubbles (required)
       colorValue: d.newsCategory,  // number, used to determine color
       selected: d.selected,        // boolean, uses selectedColor above for bubble if true
@@ -70,10 +70,12 @@ An array of data objects (defined below) used to populate the bubble chart.
    value: number,      // used to determine relative size of bubbles (required)
    displayText: string,// will use _id if undefined
    colorValue: number, // used to determine color
-   selected: boolean,  // if true will use selectedColor/selectedTextColor for circle/text
+   selected: boolean,  // if true will use selectedColor/selectedTextColor
+                          for circle/text
 }
 
-Can also be a nested JSON object if you want a nested bubble chart. That would look like:
+Can also be a nested JSON object if you want a nested bubble chart.
+That would look like:
 {
   _id: string,
   children: [
