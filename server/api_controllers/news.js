@@ -31,7 +31,6 @@ function getGeo(ent) {
 function resultsToDb(results) {
   // trim results to the appropriate format
   // toAdd is an Array of results formatted to match the db schema
-  if (results === undefined) console.log('WHY ARE RESuLTS UNDEFINED?!?!');
   const toAdd = results.docs.map(doc => {
     const d = doc.source;
     const geo = getGeo(d.enriched.url.entities);

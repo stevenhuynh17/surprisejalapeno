@@ -25,12 +25,11 @@ function getByPlace(place) {
   qUrl += `&q.enriched.url.entities.entity=|text=${place}|`;
   // return a promise from the helpers geturl function
   return helpers.getUrl(qUrl).then(d => {
-    let resp = JSON.parse(d);
-      if (resp.status !== 'OK') {
-          console.log('Status is, ', resp);
-          console.log(k);
-          console.log('Bad response from watson for query, ' , place);
-      } else return resp.result;
+    const resp = JSON.parse(d);
+    if (resp.status !== 'OK') {
+      console.log('Status is, ', resp);
+      console.log('Bad response from watson for query, ', place);
+    } else return resp.result;
   });
 }
 

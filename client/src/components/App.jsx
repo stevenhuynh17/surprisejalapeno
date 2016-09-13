@@ -203,7 +203,6 @@ class App extends React.Component {
       dataType: 'json',
       data: {q: encoded},
       success: (data) => {
-        data = JSON.parse(data);
         // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
         
         //to assign a random category (will come from db later)
