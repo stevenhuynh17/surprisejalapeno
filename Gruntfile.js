@@ -24,12 +24,13 @@ module.exports = function gruntFun(grunt) {
 
     eslint: {
       target: [
-        '*.js',
-        'client/*.js',
-        'server/*.js',
+        'client/**/*.js',
+        'client/**/*.jsx',
         'server/**/*.js',
-        // let's ignore linting the test specs for now...
-      ],
+        'server/**/*.jsx',
+        'test/**/*.js',
+        'test/**/*.jsx',
+      ]
     },
   });
 

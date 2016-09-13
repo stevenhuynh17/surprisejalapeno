@@ -64,8 +64,8 @@ function handleSearch(req, res, next) {
       () => {
   // wait for the geocoding api to return (if it hasn't already)
         locResult.then(l => {
-            // get the latitutde and longitude out of the center of the geometry returned
-            // by the geocoding api
+            // get the latitutde and longitude out of the center of the
+            // geometry returned by the geocoding api
           const toSearch = l.json.results[0].geometry.location;
             // models searches by a radius. This is just hard coded
             // this could be used as user input later

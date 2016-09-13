@@ -1,12 +1,13 @@
-//react navbar example, styled with bootstrap
+// react navbar example, styled with bootstrap
+import React from 'react';
 
-var Nav = () => (
-  <nav className='container navbar navbar-inverse navbar-fixed-top'>
-    <a href='/' className='navbar-brand'><p>Our News App Title Here</p></a>
-    <ul className='nav navbar-nav navbar-right'>
-      <li><a href='#'>Navigation Link Here</a></li>
+const Nav = () => (
+  <nav className="container navbar navbar-inverse navbar-fixed-top">
+    <a href="/" className="navbar-brand"><p>Our News App Title Here</p></a>
+    <ul className="nav navbar-nav navbar-right">
+      <li><a href="#test">Navigation Link Here</a></li>
     </ul>
-  </nav>  
+  </nav>
 );
 
 export default Nav;

@@ -14,7 +14,8 @@ function getByPlace(place) {
     start: 'now-1d',
     end: 'now',
     count: 50,
-    return: 'enriched.url.title,enriched.url.text,original.url,enriched.url.entities,enriched.url.publicationDate.date',
+    return: 'enriched.url.title,enriched.url.text,original.url,enriched.url'
+      + '.entities,enriched.url.publicationDate.date',
     apikey: process.env.alchemy
   };
   // Turn all of the queries into a query string
