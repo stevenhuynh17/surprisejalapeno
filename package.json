@@ -9,7 +9,9 @@
   },
   "scripts": {
     "test": "grunt test",
-    "start": "grunt"
+    "start": "grunt",
+    "dev": "webpack -d --watch",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
