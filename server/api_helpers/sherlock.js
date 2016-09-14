@@ -1,10 +1,11 @@
 const helpers = require('../api_helpers/general');
-
+// queryString is part of https://www.npmjs.com/package/request
 const qs = require('querystring');
 
 // given a placename, returns all news articles with that entity in the title
 // and body
 function getByPlace(place) {
+  console.log('getByPlace sherlock.js query builder input: ', place);
   // Base Alchemy News API endpoint
   let qUrl = 'https://gateway-a.watsonplatform.net/calls/data/GetNews';
   // Configure all of the individual queries for querying the endpoint
@@ -14,8 +15,9 @@ function getByPlace(place) {
     start: 'now-1d',
     end: 'now',
     count: 50,
-    return: 'enriched.url.title,enriched.url.text,original.url,enriched.url'
-      + '.entities,enriched.url.publicationDate.date',
+    return: 'enriched.url.title,enriched.url.text,'
+      + 'enriched.url.url,enriched.url.entities,'
+      + 'enriched.url.publicationDate.date',
     apikey: process.env.alchemy
   };
   // Turn all of the queries into a query string
@@ -31,7 +33,7 @@ function getByPlace(place) {
       console.log('Status is, ', resp);
       console.log('Bad response from watson for query, ', place);
     }
-
+    console.log('return helpers.getUrl resp.result: ', resp);
     return resp.result;
   });
 }

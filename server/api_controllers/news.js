@@ -29,6 +29,7 @@ function getGeo(ent) {
 
 
 function resultsToDb(results) {
+  console.log('resultsToDb func call params: ', results);
   // trim results to the appropriate format
   // toAdd is an Array of results formatted to match the db schema
   const toAdd = results.docs.map(doc => {
