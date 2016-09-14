@@ -11,7 +11,7 @@ npm-debug.log
 *.swo
 
 ## API Keys ##
-server/config/creds.js
+env/config.js
 
 ## Babel / Webpack ##
 client/config
