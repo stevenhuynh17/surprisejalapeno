@@ -1,8 +1,16 @@
 const knex = require('knex');
 const expect = require('chai').expect;
 
+const testDBconfig = {
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: 'app_test'
+};
+
 describe('MySQL DB', () => {
   let db;
+
   const model = {
     fetchAll() {
       return db.select().from('news')
@@ -32,6 +40,7 @@ describe('MySQL DB', () => {
       .catch(err => console.log(`Error inserting into "news" table ${err}`));
     }
   };
+
   const data1 = {
     title: 'Test',
     rating: 9000,
@@ -43,6 +52,7 @@ describe('MySQL DB', () => {
     url: 'www.test.com',
     published: '2016-09-07T21:59:00'
   };
+
   const data2 = {
     title: 'Another test',
     rating: 9001,
@@ -58,12 +68,7 @@ describe('MySQL DB', () => {
   before(() => {
     db = knex({
       client: 'mysql',
-      connection: {
-        host: '104.131.138.11', // using a remote server
-        user: 'app',
-        password: 'surprisejalapeno',
-        database: 'app'
-      }
+      connection: testDBconfig
     });
   });
 
