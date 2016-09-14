@@ -28,9 +28,15 @@ const testData = [
 
 describe('MySQL DB', () => {
   beforeEach((done) => {
-    db.raw('DELETE from news')
-      .then((e) => done())
-      .catch(err => console.log('ERROR', err) || done(err));
+    db.schema.hasTable('news').then((result) {
+      if (!result) {
+        setTimeout(done, 1000);
+      }else{
+        db.raw('DELETE from news')
+          .then((e) => done())
+          .catch(err => console.log('ERROR', err) || done(err));
+      }
+    });
   });
 
   const model = {
