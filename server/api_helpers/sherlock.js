@@ -1,6 +1,7 @@
 const helpers = require('../api_helpers/general');
 // queryString is part of https://www.npmjs.com/package/request
 const qs = require('querystring');
+const keys = require('./../../env/config');
 
 // given a placename, returns all news articles with that entity in the title
 // and body
@@ -16,11 +17,11 @@ const getByPlace = (place) => {
     outputMode: 'json',
     start: 'now-1d',
     end: 'now',
-    count: 50,
+    count: 5,
     return: 'enriched.url.title,enriched.url.text,'
       + 'enriched.url.url,enriched.url.entities,'
       + 'enriched.url.publicationDate.date',
-    apikey: process.env.alchemy
+    apikey: keys.watsonAPI
   };
 
   // Turn all of the queries into a query string
