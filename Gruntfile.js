@@ -44,9 +44,6 @@ module.exports = function gruntFun(grunt) {
 
   // Main grunt tasks
 
-  grunt.registerTask('test', [
-    'eslint',
-    'mochaTest',
-  ]);
-  grunt.registerTask('default', ['eslint', 'env', 'server-dev']);
+  grunt.registerTask('test', ['eslint', 'mochaTest']);
+  grunt.registerTask('default', ['env', 'server-dev']);
 };
