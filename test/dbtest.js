@@ -1,15 +1,37 @@
-const knex = require('knex');
 const expect = require('chai').expect;
+const db = require('../server/db/test-config');
 
-const testDBconfig = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: 'app_test'
-};
+const testData = [
+  {
+    title: 'Test',
+    rating: 9000,
+    lat: 45.304369,
+    lng: -121.754757,
+    category: 'Fake',
+    description: '...it\'s a test',
+    source: 'Al Jazeera',
+    url: 'www.test.com',
+    published: '2016-09-07T21:59:00'
+  },
+  {
+    title: 'Another test',
+    rating: 9001,
+    lat: 45.2829345,
+    lng: -121.796824,
+    category: 'Fake',
+    description: 'yet another test',
+    source: 'The Onion',
+    url: 'www.test123.com',
+    published: '2016-09-07T22:16:00',
+  }
+];
 
 describe('MySQL DB', () => {
-  let db;
+  beforeEach((done) => {
+    db.raw('DELETE from news')
+      .then((e) => done())
+      .catch(err => console.log('ERROR', err) || done(err));
+  });
 
   const model = {
     fetchAll() {
@@ -17,10 +39,12 @@ describe('MySQL DB', () => {
       .catch(err =>
         console.log(`Error fetching data from "news" table ${err}`));
     },
+
     getByTitle(title) {
       return db('news').where('title', title)
       .catch(err => console.log(`Error getting record by title ${err}`));
     },
+
     getByLocation(loc) {
       return db
       .select(db.raw(`*, (
@@ -41,82 +65,24 @@ describe('MySQL DB', () => {
     }
   };
 
-  const data1 = {
-    title: 'Test',
-    rating: 9000,
-    lat: 45.304369,
-    lng: -121.754757,
-    category: 'Fake',
-    description: '...it\'s a test',
-    source: 'Al Jazeera',
-    url: 'www.test.com',
-    published: '2016-09-07T21:59:00'
-  };
-
-  const data2 = {
-    title: 'Another test',
-    rating: 9001,
-    lat: 45.2829345,
-    lng: -121.796824,
-    category: 'Fake',
-    description: 'yet another test',
-    source: 'The Onion',
-    url: 'www.test123.com',
-    published: '2016-09-07T22:16:00',
-  };
-
-  before(() => {
-    db = knex({
-      client: 'mysql',
-      connection: testDBconfig
-    });
-  });
-
-  beforeEach(done => {
-    db.schema.hasTable('news').then(result => {
-      if (!result) {
-        return db.schema.createTable('news', table => {
-          table.increments();
-          table.string('title');
-          table.integer('rating');
-          table.decimal('lat', 10, 8);
-          table.decimal('lng', 11, 8);
-          table.string('category');
-          table.string('description');
-          table.string('source');
-          table.string('url');
-          table.dateTime('published');
-          table.timestamp('created_at');
-        });
-      }
-      return 0;
-    })
-    .then(() => done());
-  });
-
-  afterEach(() => db.schema.dropTable('news'));
-
-  after(done => db.destroy(() => done()));
-
   it('should take data and insert it into a table', done => {
-    model.add(data1).then(id => {
+    model.add(testData[0]).then(id => {
       expect(id).to.be.above(0);
       done();
     });
   });
 
   it('should return all data in a table', done => {
-    model.add([data1, data2])
+    model.add([testData[0], testData[1]])
     .then(() => model.fetchAll())
     .then(result => {
       expect(result).to.have.lengthOf(2);
-      expect(result[1].id).to.equal(2);
       done();
     });
   });
 
   it('should return records by title', done => {
-    model.add(data2)
+    model.add(testData[1])
     .then(() => model.getByTitle('Another test'))
     .then(result => {
       expect(result).to.have.lengthOf(1);
@@ -126,9 +92,9 @@ describe('MySQL DB', () => {
   });
 
   it('should return records whose distance is within a certain radius of a location', done => {
-    // distance from loc to data1 ~ 0.984 miles
-    // distance from loc to data2 ~ 1.614 miles
-    model.add([data1, data2])
+    // distance from loc to testData[0] ~ 0.984 miles
+    // distance from loc to testData[1] ~ 1.614 miles
+    model.add([testData[0], testData[1]])
     .then(() => model.getByLocation({ lat: 45.2929345, lng: -121.766824, rad: 1 }))
     .then(result => {
       expect(result).to.have.lengthOf(1);
