@@ -17,4 +17,4 @@ echo "pushing to deploy"
 git status
 git branch -va
 git remote -v
-git push deploy
+git push deploy $TRAVIS_BRANCH:$TRAVIS_BRANCH
