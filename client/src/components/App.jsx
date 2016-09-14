@@ -171,8 +171,11 @@ class App extends React.Component {
 
   getNewsByLocation(loc) {
     console.log('inside getNewsByLocation');
+    console.log('location: ', loc);
     const query = loc.split(' ').join('+');
+    console.log('joined query: ', query);
     const encoded = encodeURIComponent(query);
+    console.log('encoded: ', encoded);
     /* global $ */
     $.ajax({
       method: 'GET',
