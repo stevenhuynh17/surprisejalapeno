@@ -162,7 +162,7 @@ class App extends React.Component {
       numBubbles: 0
     };
 
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleSuggestionSelect = this.handleSuggestionSelect.bind(this);
     this.getNewsByLocation = this.getNewsByLocation.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
@@ -172,16 +172,18 @@ class App extends React.Component {
   getNewsByLocation(loc) {
     console.log('inside getNewsByLocation');
     console.log('location: ', loc);
-    const query = loc.split(' ').join('+');
-    console.log('joined query: ', query);
-    const encoded = encodeURIComponent(query);
-    console.log('encoded: ', encoded);
+    // const query = loc.split(' ').join('+');
+    // console.log('joined query: ', query);
+    // const encoded = encodeURIComponent(query);
+    // console.log('encoded: ', encoded);
     /* global $ */
+    const locObj = JSON.stringify(loc);
+
     $.ajax({
       method: 'GET',
       url: '/query',
       dataType: 'json',
-      data: { q: encoded },
+      data: { q: locObj },
       success: (data) => {
         // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
 
@@ -220,19 +222,21 @@ class App extends React.Component {
     console.log('selection e:', e);
     const loc = e.label;
     this.setState({ location: loc });
-    this.getNewsByLocation(loc);
+    this.getNewsByLocation(e);
   }
 
-  handleSearchSubmit(e) {
-    console.log('inside handleSearchSubmit');
-    e.preventDefault();
-    const location = this.state.location;
-    if (!location) {
-      return;
-    }
+  // Possible redundant code --> It is getting passed down to submit
+    // But it is never being called
+  // handleSearchSubmit(e) {
+  //   console.log('inside handleSearchSubmit');
+  //   e.preventDefault();
+  //   const location = this.state.location;
+  //   if (!location) {
+  //     return;
+  //   }
 
-    this.getNewsByLocation(location);
-  }
+  //   this.getNewsByLocation(location);
+  // }
 
   handleSearchChange(e) {
     console.log('inside handleSearchChange');
