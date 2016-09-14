@@ -1,10 +1,16 @@
 language: node_js
 node_js:
-- node
+  - node
+
 cache:
   directories:
   - node_modules
+
 notifications:
   slack: hr46:zi9kNkElRi7scpZXZL7DHNXy
+
 after_success:
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./.travis/push_prod; fi'
+
+before_script:
+  - mysql -e 'create database app_test;'
