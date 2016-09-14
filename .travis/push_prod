@@ -15,5 +15,6 @@ git remote add deploy ssh://ec2-user@54.213.203.244/home/ec2-user/repo/
 
 echo "pushing to deploy"
 git status
-git git branch
+git branch -va
+git remote -v
 git push deploy
