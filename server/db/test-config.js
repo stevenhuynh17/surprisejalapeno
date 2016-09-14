@@ -10,6 +10,7 @@ const knex = require('knex')({
 
 knex.schema.hasTable('news').then(result => {
   if (!result) {
+    console.log('adding table...');
     return knex.schema.createTable('news', table => {
       table.increments();
       table.string('title');
