@@ -170,10 +170,7 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-<<<<<<< HEAD
   // STEP 2: Make the AJAX call.
-=======
->>>>>>> ec6bf4298686ec99b435d30ff2b77d7337feeded
   getNewsByLocation(loc) {
     console.log('inside getNewsByLocation');
     console.log('location: ', loc);
@@ -193,6 +190,7 @@ class App extends React.Component {
         // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
 
         // to assign a random category (will come from db later)
+        console.log('YOU MADE A SUCCESSFUL API CALL');
         const getCategory = () => Math.floor(Math.random() * 4);
 
         // to assign a random rating (will come from db later)
@@ -213,7 +211,10 @@ class App extends React.Component {
           testObj.rating = rating;
         });
 
+        data = data.splice(0, 12);
+
         // changed from data.value
+        console.log('AMOUNT OF BUBBLES: ', data.length);
         this.setState({ data, numBubbles: data.length });
       },
 
