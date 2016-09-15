@@ -41,6 +41,7 @@ function resultsToDb(results) {
       // TODO: Make category from watson
       // TODO: Make source from watson
       // TODO: Make rating from watson
+      // TODO: Add sentiment from watson
       category: d.enriched.url.keywords,
       title: d.enriched.url.title,
       description: d.enriched.url.text,
