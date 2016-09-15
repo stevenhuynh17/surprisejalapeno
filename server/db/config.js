@@ -2,10 +2,10 @@ const config = require('../../env/config');
 const knex = require('knex')({
   client: 'mysql',
   connection: {
-    host: config.DB_HOST,
-    user: config.DB_USER,
-    password: config.DB_PASSWORD,
-    database: 'app'
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'app_test'
   },
   pool: {
     min: 1,
@@ -17,7 +17,7 @@ knex.schema.hasTable('news').then(result => {
   if (!result) {
     return knex.schema.createTable('news', table => {
       // TODO: Make increments UUID from watson
-      table.increments();
+      table.string('articleId').primary().unique();
       table.string('title');
       table.integer('rating');
       table.decimal('lat', 10, 8);
