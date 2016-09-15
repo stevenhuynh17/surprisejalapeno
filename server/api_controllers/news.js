@@ -36,11 +36,16 @@ function resultsToDb(results) {
     const d = doc.source;
     const geo = getGeo(d.enriched.url.entities);
     return {
-  // this is all just mapping watson return values to db schema names
+      // this is all just mapping watson return values to db schema names
+      // TODO: Make increments UUID from watson
+      // TODO: Make category from watson
+      // TODO: Make source from watson
+      // TODO: Make rating from watson
       category: d.enriched.url.keywords,
       title: d.enriched.url.title,
       description: d.enriched.url.text,
       url: d.enriched.url.url,
+      published: d.enriched.url.publicationDate.date,
       lat: geo.lat,
       lng: geo.lng
     };

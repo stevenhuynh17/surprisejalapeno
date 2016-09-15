@@ -9,14 +9,14 @@ const googleMapsClient = google.createClient({
 // google geocode api. The return object is much more complex than I expected it
 // to be.
 function geocode(text) {
-  console.log('goog.geocode input: ', text);
+  // console.log('goog.geocode input: ', text);
   return new Promise((fulfill, reject) => {
     googleMapsClient.geocode({ address: text }, (err, response) => {
       if (err) {
-        console.log('Error with googleMaps: ', err);
+        // console.log('Error with googleMaps: ', err);
         reject(err);
       } else {
-        console.log('received response from googleMaps: ', response);
+        // console.log('received response from googleMaps: ', response);
         fulfill(response);
       }
     });
