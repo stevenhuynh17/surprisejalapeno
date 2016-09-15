@@ -188,7 +188,7 @@ class App extends React.Component {
       data: { q: locObj },
       success: (data) => {
         // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
-
+        console.log('result of getNewsByLocation success: ', data);
         // to assign a random category (will come from db later)
         console.log('YOU MADE A SUCCESSFUL API CALL');
         const getCategory = () => Math.floor(Math.random() * 4);

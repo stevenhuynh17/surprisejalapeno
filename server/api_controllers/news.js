@@ -29,7 +29,7 @@ function getGeo(ent) {
 
 // ERROR RIGHT HERE
 function resultsToDb(results) {
-  console.log('resultsToDb func call params: ', results);
+  // console.log('resultsToDb func call params: ', JSON.stringify(results));
   // trim results to the appropriate format
   // toAdd is an Array of results formatted to match the db schema
   const toAdd = results.docs.map(doc => {
@@ -64,12 +64,12 @@ function handleSearch(req, res, next) {
   const location = JSON.parse(req.query.q);
   const address = location.gmaps.address_components;
   const city = findCity(address);
-  console.log('This is the address: ', address);
-  console.log('handleSearch and req.query.q: ', location);
-  console.log('This is the city within handleSearch ', city);
+  // console.log('This is the address: ', address);
+  // console.log('handleSearch and req.query.q: ', location);
+  // console.log('This is the city within handleSearch ', city);
 
   // geocode the word so that we have a lat long
-  console.log('address passed to google geocode api: ', location.label);
+  // console.log('address passed to google geocode api: ', location.label);
 
   // sherlock is the Watson API file
   // give it the word from the query
@@ -78,11 +78,11 @@ function handleSearch(req, res, next) {
     .then(d => resultsToDb(d))
     .then(
       () => {
-        console.log('wait for geodcoding api complete');
+        // console.log('wait for geocoding api complete');
         // wait for the geocoding api to return (if it hasn't already)
         goog.geocode(location.label)
         .then((l) => {
-          console.log('l input to locResult.then: ', l);
+          // console.log('l input to locResult.then: ', l);
             // get the latitutde and longitude out of the center of the
             // geometry returned by the geocoding api
           const toSearch = l.json.results[0].geometry.location;
@@ -91,7 +91,7 @@ function handleSearch(req, res, next) {
           toSearch.rad = 25;
           model.news.getByLocation(toSearch)
             .then(dbResponse => {
-              console.log('handleSearch dbResponse: ', dbResponse);
+              // console.log('handleSearch dbResponse: ', dbResponse);
               // send the response from the db getbylocation as json
               res.json(dbResponse);
             });
