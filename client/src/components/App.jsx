@@ -170,7 +170,8 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  getNewsByLocation (loc) {
+  // STEP 2: Make the AJAX call.
+  getNewsByLocation(loc) {
     console.log('inside getNewsByLocation');
     const query = loc.split(' ').join('+');
     const encoded = encodeURIComponent(query);
@@ -214,14 +215,15 @@ class App extends React.Component {
     });
   }
 
-  handleSuggestionSelect (e) {
+  // STEP 1: changes state to location that was typed in. Invoke getNewsByLocation;
+  handleSuggestionSelect(e) {
     console.log('selection e:', e);
     const loc = e.label;
     this.setState({ location: loc });
     this.getNewsByLocation(loc);
   }
 
-  handleSearchSubmit (e) {
+  handleSearchSubmit(e) {
     console.log('inside handleSearchSubmit');
     e.preventDefault();
     const location = this.state.location;
@@ -232,22 +234,28 @@ class App extends React.Component {
     this.getNewsByLocation(location);
   }
 
-  handleSearchChange (e) {
+  handleSearchChange(e) {
     console.log('inside handleSearchChange');
     e.preventDefault();
     this.setState({ location: e.target.value });
   }
 
-  handleClick (d) {
+  handleClick(d) {
     console.log('inside handleClick, d:', d);
     window.open(d.url);
   }
 
+  // handleSuggestionSelect gets invoked!!!
   render() {
     return (
       <div>
         <section>
-          <Search props={this.props} handleSearchChange={this.handleSearchChange} handleSearchSubmit={this.handleSearchSubmit} handleSuggestionSelect={this.handleSuggestionSelect} />
+          <Search
+            props={this.props}
+            handleSearchChange={this.handleSearchChange}
+            handleSearchSubmit={this.handleSearchSubmit}
+            handleSuggestionSelect={this.handleSuggestionSelect}
+          />
         </section>
         <section>
           <BubbleChart data={this.state.data} handleClick={this.handleClick} />

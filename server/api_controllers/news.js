@@ -27,7 +27,7 @@ function getGeo(ent) {
   return geo;
 }
 
-
+// ERROR RIGHT HERE
 function resultsToDb(results) {
   // trim results to the appropriate format
   // toAdd is an Array of results formatted to match the db schema
@@ -50,16 +50,21 @@ function resultsToDb(results) {
 
 function handleSearch(req, res, next) {
   // get the location search from the request
+  console.log('Query: ', req.query);
   let location = req.query.q;
   // Format the location correctly for HTTP transport
   location = location.split(' ').join('+');
+  console.log('LOCATION: ', location); 
   location = encodeURIComponent(location);
+  console.log('LOCATION: ', location); 
   // geocode the word so that we have a lat long
   const locResult = goog.geocode(location);
-
+  console.log('LOCATION: ', locResult); 
   // sherlock is the Watson API file
   // give it the word from the query
   // send the results to the db after some light parsing and then
+
+  // RESULTS TO DB GETS INVOKED HERE
   sherlock.getByPlace(location).then(d => resultsToDb(d)).then(
       () => {
   // wait for the geocoding api to return (if it hasn't already)
