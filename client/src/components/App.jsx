@@ -198,10 +198,11 @@ class App extends React.Component {
 
         console.log(getRating());
 
+        data = data.slice(0, 100);
+
         // iterate through story objects and assign random category and rating
         let reqCount = 0;
         data.forEach((storyObj) => {
-          console.log(storyObj);
           const testObj = storyObj;
           const category1 = getCategory();
           const rating = getRating();
