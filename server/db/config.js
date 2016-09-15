@@ -12,6 +12,14 @@ const sequelize = new Sequelize(
   }
 );
 
+sequelize.authenticate()
+  .then((data) => {
+    console.log('Connection has been established successfully: ', data);
+  })
+  .catch((err) => {
+    console.log('there was a problem: ', err);
+  });
+
 const News = sequelize.define('news', {
   article_id: { type: Sequelize.STRING, unique: true },
   title: { type: Sequelize.STRING },
@@ -21,13 +29,25 @@ const News = sequelize.define('news', {
   published: { type: Sequelize.STRING },
   lat: { type: Sequelize.DECIMAL(10, 8) },
   lng: { type: Sequelize.DECIMAL(11, 8) },
-  timeestamps: true
 });
 
-sequelize.sync()
-  .then(() => {
-
-  });
+News.sync();
+// News.sync({ force: true })
+  // .then(() => {
+  //   return News.create({
+  //     article_id: 'hi1',
+  //     title: 'Test String',
+  //     rating: 'Test String',
+  //     description: 'Test Long Text',
+  //     url: 'Test String',
+  //     published: 'Test String',
+  //     lat: 10.987654,
+  //     lng: 10.987654,
+  //   });
+  // })
+  // .then((res) => {
+  //   console.log('Table deleted and recreated! With test data: ', res.dataValues);
+  // });
 
 module.exports = News;
 // const knex = require('knex')({
