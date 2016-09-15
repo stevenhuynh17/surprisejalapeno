@@ -29,6 +29,7 @@ function getGeo(ent) {
 
 // ERROR RIGHT HERE
 function resultsToDb(results) {
+  console.log('resultsToDb func call params: ', results);
   // trim results to the appropriate format
   // toAdd is an Array of results formatted to match the db schema
   const toAdd = results.docs.map(doc => {
@@ -39,7 +40,7 @@ function resultsToDb(results) {
       category: d.enriched.url.keywords,
       title: d.enriched.url.title,
       description: d.enriched.url.text,
-      url: d.original.url,
+      url: d.enriched.url.url,
       lat: geo.lat,
       lng: geo.lng
     };
@@ -48,24 +49,35 @@ function resultsToDb(results) {
   return model.news.add(toAdd);
 }
 
+const findCity = (arr) => {
+  let city = null;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].types.includes('locality')) {
+      city = arr[i].long_name;
+    }
+  }
+  return city;
+};
+
 function handleSearch(req, res, next) {
   // get the location search from the request
-  console.log('Query: ', req.query);
-  let location = req.query.q;
+  const location = JSON.parse(req.query.q);
+  const address = location.gmaps.address_components;
+  const city = findCity(address);
+  console.log('This is the address: ', address);
+  console.log('handleSearch and req.query.q: ', location);
+  console.log('This is the city within handleSearch ', city);
+
   // Format the location correctly for HTTP transport
-  location = location.split(' ').join('+');
-  console.log('LOCATION: ', location); 
-  location = encodeURIComponent(location);
-  console.log('LOCATION: ', location); 
+  // location = location.split(' ').join('+');
+  // location = encodeURIComponent(location);
   // geocode the word so that we have a lat long
-  const locResult = goog.geocode(location);
-  console.log('LOCATION: ', locResult); 
+  const locResult = goog.geocode(req.query);
+
   // sherlock is the Watson API file
   // give it the word from the query
   // send the results to the db after some light parsing and then
-
-  // RESULTS TO DB GETS INVOKED HERE
-  sherlock.getByPlace(location).then(d => resultsToDb(d)).then(
+  sherlock.getByPlace(city).then(d => resultsToDb(d)).then(
       () => {
   // wait for the geocoding api to return (if it hasn't already)
         locResult.then(l => {
@@ -84,5 +96,6 @@ function handleSearch(req, res, next) {
       })
     .catch(e => next(e));
 }
+
 
 exports.handleSearch = handleSearch;

@@ -24,12 +24,9 @@ module.exports = function gruntFun(grunt) {
 
     eslint: {
       target: [
-        'client/**/*.js',
-        'client/**/*.jsx',
+        'client/src/components/*.jsx',
         'server/**/*.js',
-        'server/**/*.jsx',
-        'test/**/*.js',
-        'test/**/*.jsx',
+        'test/*.js',
       ]
     },
   });
@@ -47,9 +44,6 @@ module.exports = function gruntFun(grunt) {
 
   // Main grunt tasks
 
-  grunt.registerTask('test', [
-    'eslint',
-    'mochaTest',
-  ]);
-  grunt.registerTask('default', ['eslint', 'env', 'server-dev']);
+  grunt.registerTask('test', ['eslint', 'mochaTest']);
+  grunt.registerTask('default', ['env', 'server-dev']);
 };

@@ -133,14 +133,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    ////////start testing//////////
-    //to assign a random category (will come from db later)
-    const getCategory = function() {
-      return Math.floor(Math.random() * 4);
-    };
+    // //////start testing//////////
+    // to assign a random category (will come from db later)
+    const getCategory = () => Math.floor(Math.random() * 4);
 
-    //to assign a random rating (will come from db later)
-    const getRating = function() {
+    // to assign a random rating (will come from db later)
+    const getRating = () => {
       const ratings = [4, 6, 8, 10, 11, 8, 20];
       const rating = ratings[Math.floor(Math.random() * ratings.length)];
       return rating;
@@ -148,49 +146,57 @@ class App extends React.Component {
 
     console.log(getRating());
 
-    //iterate through story objects and assign random category and rating
+    // iterate through story objects and assign random category and rating
     dummyData.forEach((storyObj) => {
+      const testObj = storyObj;
       const category1 = getCategory();
       const rating = getRating();
-      storyObj.newsCategory = category1;
-      storyObj.rating = rating;
+      testObj.newsCategory = category1;
+      testObj.rating = rating;
     });
-    ///////end testing///////////
+    // /////end testing///////////
 
     this.state = {
       location: '',
-      data: [],    //remember to change back to empty array after done using dummy data
+      // remember to change back to empty array after done using dummy data
+      data: [],
       numBubbles: 0
     };
 
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
+    // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleSuggestionSelect = this.handleSuggestionSelect.bind(this);
     this.getNewsByLocation = this.getNewsByLocation.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
+<<<<<<< HEAD
   // STEP 2: Make the AJAX call.
+=======
+>>>>>>> ec6bf4298686ec99b435d30ff2b77d7337feeded
   getNewsByLocation(loc) {
     console.log('inside getNewsByLocation');
-    const query = loc.split(' ').join('+');
-    const encoded = encodeURIComponent(query);
+    console.log('location: ', loc);
+    // const query = loc.split(' ').join('+');
+    // console.log('joined query: ', query);
+    // const encoded = encodeURIComponent(query);
+    // console.log('encoded: ', encoded);
     /* global $ */
+    const locObj = JSON.stringify(loc);
+
     $.ajax({
       method: 'GET',
       url: '/query',
       dataType: 'json',
-      data: { q: encoded },
+      data: { q: locObj },
       success: (data) => {
         // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
 
-        //to assign a random category (will come from db later)
-        const getCategory = function() {
-          return Math.floor(Math.random() * 4);
-        };
+        // to assign a random category (will come from db later)
+        const getCategory = () => Math.floor(Math.random() * 4);
 
-        //to assign a random rating (will come from db later)
-        const getRating = function() {
+        // to assign a random rating (will come from db later)
+        const getRating = () => {
           const ratings = [4, 6, 8, 10, 11, 8, 20];
           const rating = ratings[Math.floor(Math.random() * ratings.length)];
           return rating;
@@ -198,15 +204,17 @@ class App extends React.Component {
 
         console.log(getRating());
 
-        //iterate through story objects and assign random category and rating
+        // iterate through story objects and assign random category and rating
         data.forEach((storyObj) => {
+          const testObj = storyObj;
           const category1 = getCategory();
           const rating = getRating();
-          storyObj.newsCategory = category1;
-          storyObj.rating = rating;
+          testObj.newsCategory = category1;
+          testObj.rating = rating;
         });
 
-        this.setState({ data, numBubbles: data.length }); //changed from data.value
+        // changed from data.value
+        this.setState({ data, numBubbles: data.length });
       },
 
       error: (err) => {
@@ -220,19 +228,22 @@ class App extends React.Component {
     console.log('selection e:', e);
     const loc = e.label;
     this.setState({ location: loc });
-    this.getNewsByLocation(loc);
+    this.getNewsByLocation(e);
   }
 
-  handleSearchSubmit(e) {
-    console.log('inside handleSearchSubmit');
-    e.preventDefault();
-    const location = this.state.location;
-    if (!location) {
-      return;
-    }
 
-    this.getNewsByLocation(location);
-  }
+  // Possible redundant code --> It is getting passed down to submit
+    // But it is never being called
+  // handleSearchSubmit(e) {
+  //   console.log('inside handleSearchSubmit');
+  //   e.preventDefault();
+  //   const location = this.state.location;
+  //   if (!location) {
+  //     return;
+  //   }
+
+  //   this.getNewsByLocation(location);
+  // }
 
   handleSearchChange(e) {
     console.log('inside handleSearchChange');
