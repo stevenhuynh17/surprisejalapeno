@@ -28,10 +28,10 @@ const testData = [
 
 describe('MySQL DB', () => {
   beforeEach((done) => {
-    db.schema.hasTable('news').then((result) {
+    db.schema.hasTable('news').then((result) => {
       if (!result) {
         setTimeout(done, 1000);
-      }else{
+      } else {
         db.raw('DELETE from news')
           .then((e) => done())
           .catch(err => console.log('ERROR', err) || done(err));
