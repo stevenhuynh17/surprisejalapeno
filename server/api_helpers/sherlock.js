@@ -6,7 +6,7 @@ const keys = require('./../../env/config');
 // given a placename, returns all news articles with that entity in the title
 // and body
 const getByPlace = (place) => {
-  console.log('getByPlace sherlock.js query builder input: ', place);
+  // console.log('getByPlace sherlock.js query builder input: ', place);
 
   // Base Alchemy News API endpoint
   let qUrl = 'https://gateway-a.watsonplatform.net/calls/data/GetNews';
@@ -22,9 +22,12 @@ const getByPlace = (place) => {
     // count: 5, // count is how many watson returns
     // HOWEVER, they will charge many more transactions
     // Based on what they FIND
-    return: 'enriched.url.title,enriched.url.text,'
-      + 'enriched.url.url,enriched.url.entities,'
-      + 'enriched.url.publicationDate.date',
+    return: 'enriched.url.title,'
+      + 'enriched.url.text,'
+      + 'enriched.url.url,'
+      + 'enriched.url.entities,'
+      + 'enriched.url.publicationDate.date,'
+      + 'enriched.url.keywords,',
     apikey: keys.watsonAPI
   };
 
