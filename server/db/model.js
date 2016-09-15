@@ -32,7 +32,7 @@ module.exports = {
       // .having('distance', '<', loc.rad)
       // .orderBy('distance', 'asc')
       // .limit(100)
-      .catch(err => console.log('Error getting by location', err));
+      .catch(err => console.log('Error getting by location'));
     },
     add(data) {
       // expects data to be formatted as
@@ -40,7 +40,13 @@ module.exports = {
       // can take an array of data objects -> [{...}, {...}, ...]
       // resolves promise with id of first inserted record -> [id]
       return db('news').insert(data, 'id')
-      .catch(err => console.log(`Error inserting into "news" table ${err}`));
+      .catch(err => console.log(`Error inserting into "news" table`
+        // `${err}`
+        ));
+
+      // Knex does not have upsert. Above 'add' breaks on duplicate articles
+      // use db.raw(<YOUR QUERY HERE>) to build your own upsert
+      // return db.schema.raw(``)
     }
   }
 };

@@ -44,8 +44,8 @@ const getByPlace = (place) => {
     const resp = JSON.parse(d);
 
     if (resp.status !== 'OK') {
-      console.log('Status is, ', resp);
-      console.log('Bad response from watson for query, ', place);
+      // console.log('Status is, ', resp);
+      // console.log('Bad response from watson for query, ', place);
     }
 
     return resp.result;
