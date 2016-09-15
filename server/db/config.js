@@ -4,7 +4,7 @@ const knex = require('knex')({
   connection: {
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'thisIsSomeNextLevelStuff',
     database: 'app_test'
   },
   pool: {
@@ -17,16 +17,17 @@ knex.schema.hasTable('news').then(result => {
   if (!result) {
     return knex.schema.createTable('news', table => {
       // TODO: Make increments UUID from watson
-      table.string('articleId').primary().unique();
+      table.increments();
+      table.string('article_id').unique();
       table.string('title');
-      table.integer('rating');
+      table.string('rating');
+      // table.string('category');
+      table.text('description', 'longtext');
+      // table.string('source');
+      table.string('url');
+      table.string('published');
       table.decimal('lat', 10, 8);
       table.decimal('lng', 11, 8);
-      table.string('category');
-      table.string('description');
-      table.string('source');
-      table.string('url');
-      table.dateTime('published');
       table.timestamp('created_at');
     });
   }

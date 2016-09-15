@@ -35,6 +35,8 @@ function resultsToDb(results) {
   const toAdd = results.docs.map(doc => {
     const d = doc.source;
     const geo = getGeo(d.enriched.url.entities);
+    console.log('resultsToDb doc.id value: ', doc.id);
+
     return {
       // this is all just mapping watson return values to db schema names
       // TODO: Make increments UUID from watson
@@ -42,13 +44,18 @@ function resultsToDb(results) {
       // TODO: Make source from watson
       // TODO: Make rating from watson
       // TODO: Add sentiment from watson
-      category: d.enriched.url.keywords,
+      article_id: doc.id,
       title: d.enriched.url.title,
+      rating: d.enriched.url.relevance ?
+        (d.enriched.url.relevance).toString() :
+        'null',
+      // category: d.enriched.url.keywords || 'null',
       description: d.enriched.url.text,
+      // source: 'null',
       url: d.enriched.url.url,
       published: d.enriched.url.publicationDate.date,
       lat: geo.lat,
-      lng: geo.lng
+      lng: geo.lng,
     };
   });
   // pass toAdd to the db
