@@ -11,19 +11,22 @@ const dummyData = [
     storyName: 'example storyname 1',
     url: 'https://www.google.com/',
     rating: 22,
-    newsCategory: 1
+    newsCategory: 1,
+    sentimentScore: 0
   },
   {
     storyName: 'example storyname 2',
     url: 'https://www.google.com/',
     rating: 14,
-    newsCategory: 2
+    newsCategory: 2,
+    sentimentScore: 1
   },
   {
     storyName: 'example storyname 3',
     url: 'https://www.google.com/',
     rating: 14,
-    newsCategory: 4
+    newsCategory: 4,
+    sentimentScore: -1
   },
   {
     storyName: 'example storyname 4',
@@ -144,85 +147,98 @@ class App extends React.Component {
       return rating;
     };
 
-    console.log(getRating());
+    // console.log(getRating());
+
+    const moodFactor = (obj) => {
+      console.log(obj.sentimentScore);
+      if (obj.sentimentScore < 0) {
+        return 0;
+      } else if (obj.sentimentScore > 0) {
+        return 2;
+      } return 1;
+    };
 
     // iterate through story objects and assign random category and rating
     dummyData.forEach((storyObj) => {
       const testObj = storyObj;
       const category1 = getCategory();
       const rating = getRating();
+      const score = moodFactor(storyObj);
       testObj.newsCategory = category1;
       testObj.rating = rating;
+      testObj.sentimentScore = score;
     });
     // /////end testing///////////
-
     this.state = {
       location: '',
       // remember to change back to empty array after done using dummy data
-      data: [],
+      data: dummyData,
       numBubbles: 0
     };
 
+    console.log(this.state.data);
     // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleSuggestionSelect = this.handleSuggestionSelect.bind(this);
-    this.getNewsByLocation = this.getNewsByLocation.bind(this);
+    // this.getNewsByLocation = this.getNewsByLocation.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
+
   // STEP 2: Make the AJAX call.
-  getNewsByLocation(loc) {
-    console.log('inside getNewsByLocation');
-    console.log('location: ', loc);
-    // const query = loc.split(' ').join('+');
-    // console.log('joined query: ', query);
-    // const encoded = encodeURIComponent(query);
-    // console.log('encoded: ', encoded);
-    /* global $ */
-    const locObj = JSON.stringify(loc);
+  // getNewsByLocation(loc) {
+  //   console.log('inside getNewsByLocation');
+  //   console.log('location: ', loc);
+  //   this.setState({ data, numBubbles: data.length });
+  //   // const query = loc.split(' ').join('+');
+  //   // console.log('joined query: ', query);
+  //   // const encoded = encodeURIComponent(query);
+  //   // console.log('encoded: ', encoded);
+  //   /* global $ */
+  //   const locObj = JSON.stringify(loc);
 
-    $.ajax({
-      method: 'GET',
-      url: '/query',
-      dataType: 'json',
-      data: { q: locObj },
-      success: (data) => {
-        // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
-        console.log('result of getNewsByLocation success: ', data);
-        // to assign a random category (will come from db later)
-        console.log('YOU MADE A SUCCESSFUL API CALL');
-        const getCategory = () => Math.floor(Math.random() * 4);
+  //   $.ajax({
+  //     method: 'GET',
+  //     url: '/query',
+  //     dataType: 'json',
+  //     data: { q: locObj },
+  //     success: (data) => {
+  //       // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
+  //       console.log('YOU MADE A SUCCESSFUL API CALL');
+  //       console.log('DATA RECEIVED, HERE YOU GO: ', data);
+  //       // to assign a random category (will come from db later)
+  //       // const getCategory = () => Math.floor(Math.random() * 4);
 
-        // to assign a random rating (will come from db later)
-        const getRating = () => {
-          const ratings = [4, 6, 8, 10, 11, 8, 20];
-          const rating = ratings[Math.floor(Math.random() * ratings.length)];
-          return rating;
-        };
+  //       // to assign a random rating (will come from db later)
+  //       const getRating = () => {
+  //         const ratings = [4, 6, 8, 10, 11, 8, 20];
+  //         const rating = ratings[Math.floor(Math.random() * ratings.length)];
+  //         return rating;
+  //       };
 
-        console.log(getRating());
+  //       // console.log(getRating());
 
-        // iterate through story objects and assign random category and rating
-        data.forEach((storyObj) => {
-          const testObj = storyObj;
-          const category1 = getCategory();
-          const rating = getRating();
-          testObj.newsCategory = category1;
-          testObj.rating = rating;
-        });
+  //       // iterate through story objects and assign random category and rating
+  //       data.forEach((storyObj) => {
+  //         const testObj = storyObj;
+  //         // const category1 = getCategory();
+  //         // const rating = getRating();
+  //         // testObj.newsCategory = category1;
+  //         // testObj.rating = rating;
+  //       });
 
-        data = data.splice(0, 12);
+  //       data = data.splice(0, 12);
 
-        // changed from data.value
-        console.log('AMOUNT OF BUBBLES: ', data.length);
-        this.setState({ data, numBubbles: data.length });
-      },
+  //       // changed from data.value
+  //       console.log('AMOUNT OF BUBBLES: ', data.length);
+  //       this.setState({ data, numBubbles: data.length });
+  //     },
 
-      error: (err) => {
-        console.log('getNews err ', err);
-      }
-    });
-  }
+  //     error: (err) => {
+  //       console.log('getNews err ', err);
+  //     }
+  //   });
+  // }
 
   // STEP 1: changes state to location that was typed in. Invoke getNewsByLocation;
   handleSuggestionSelect(e) {
