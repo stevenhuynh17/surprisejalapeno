@@ -196,9 +196,8 @@ class App extends React.Component {
           return rating;
         };
 
-        console.log(getRating());
-
-        data = data.slice(0, 100);
+        data = data.slice(0, 50);
+        console.log('rendering', data.length, ' gifs');
 
         // iterate through story objects and assign random category and rating
         let reqCount = 0;
