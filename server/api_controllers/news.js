@@ -27,7 +27,7 @@ function getGeo(ent) {
   return geo;
 }
 
-
+// ERROR RIGHT HERE
 function resultsToDb(results) {
   // console.log('resultsToDb func call params: ', JSON.stringify(results));
   // trim results to the appropriate format

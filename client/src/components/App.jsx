@@ -1,3 +1,4 @@
+// Testing123
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -169,6 +170,7 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  // STEP 2: Make the AJAX call.
   getNewsByLocation(loc) {
     console.log('inside getNewsByLocation');
     console.log('location: ', loc);
@@ -188,6 +190,7 @@ class App extends React.Component {
         // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
         console.log('result of getNewsByLocation success: ', data);
         // to assign a random category (will come from db later)
+        console.log('YOU MADE A SUCCESSFUL API CALL');
         const getCategory = () => Math.floor(Math.random() * 4);
 
         // to assign a random rating (will come from db later)
@@ -208,7 +211,10 @@ class App extends React.Component {
           testObj.rating = rating;
         });
 
+        data = data.splice(0, 12);
+
         // changed from data.value
+        console.log('AMOUNT OF BUBBLES: ', data.length);
         this.setState({ data, numBubbles: data.length });
       },
 
@@ -218,12 +224,14 @@ class App extends React.Component {
     });
   }
 
+  // STEP 1: changes state to location that was typed in. Invoke getNewsByLocation;
   handleSuggestionSelect(e) {
     console.log('selection e:', e);
     const loc = e.label;
     this.setState({ location: loc });
     this.getNewsByLocation(e);
   }
+
 
   // Possible redundant code --> It is getting passed down to submit
     // But it is never being called
@@ -249,6 +257,7 @@ class App extends React.Component {
     window.open(d.url);
   }
 
+  // handleSuggestionSelect gets invoked!!!
   render() {
     return (
       <div>
