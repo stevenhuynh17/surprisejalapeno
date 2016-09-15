@@ -158,8 +158,7 @@ class App extends React.Component {
     this.state = {
       location: '',
       // remember to change back to empty array after done using dummy data
-      data: [],
-      numBubbles: 0
+      data: []
     };
 
     // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
@@ -200,16 +199,38 @@ class App extends React.Component {
         console.log(getRating());
 
         // iterate through story objects and assign random category and rating
+        let reqCount = 0;
         data.forEach((storyObj) => {
+          console.log(storyObj);
           const testObj = storyObj;
           const category1 = getCategory();
           const rating = getRating();
           testObj.newsCategory = category1;
+          testObj.newsCategory = category1;
           testObj.rating = rating;
+
+          reqCount++;
+
+          $.ajax({
+            method: 'GET',
+            url: `http://api.giphy.com/v1/gifs/search`,
+            dataType: 'json',
+            data: {
+              q: storyObj.title,
+              api_key: 'dc6zaTOxFJmzC'
+            },
+            success: (d) => {
+              testObj.image = d.data[0].images.original.url;
+              reqCount--;
+              if(reqCount === 0) {
+                this.setState({ data });
+              }
+            }
+          });
         });
 
         // changed from data.value
-        this.setState({ data, numBubbles: data.length });
+        this.setState({ data });
       },
 
       error: (err) => {
@@ -244,8 +265,8 @@ class App extends React.Component {
     this.setState({ location: e.target.value });
   }
 
-  handleClick(d) {
-    console.log('inside handleClick, d:', d);
+  handleClick(d, e) {
+    console.log('inside handleClick, d:', d, this, e);
     window.open(d.url);
   }
 
