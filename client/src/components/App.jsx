@@ -1,9 +1,13 @@
 // Testing123
 import React from 'react';
 import ReactDOM from 'react-dom';
+import rd3 from 'react-d3-library';
 
 import Search from './Search.jsx';
 import BubbleChart from './BubbleChart.jsx';
+import NationalMap from './NationalMap.jsx'; // NODE FILE
+
+const USA = rd3.Component;
 
 // EXAMPLE FOR TESTING //
 const dummyData = [
@@ -204,7 +208,8 @@ class App extends React.Component {
       location: '',
       // remember to change back to empty array after done using dummy data
       data: dummyData,
-      numBubbles: 0
+      numBubbles: 0,
+      d3: ''
     };
 
     console.log(this.state.data);
@@ -270,6 +275,9 @@ class App extends React.Component {
   //     }
   //   });
   // }
+  componentDidMount() {
+    this.setState({ d3: NationalMap });
+  }
 
   // STEP 1: changes state to location that was typed in. Invoke getNewsByLocation;
   handleSuggestionSelect(e) {
@@ -308,17 +316,22 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <section>
-          <Search
-            props={this.props}
-            handleSearchChange={this.handleSearchChange}
-            handleSearchSubmit={this.handleSearchSubmit}
-            handleSuggestionSelect={this.handleSuggestionSelect}
-          />
-        </section>
-        <section>
-          <BubbleChart data={this.state.data} handleClick={this.handleClick} colors={colorLegend} />
-        </section>
+        <div>
+          <section>
+            <Search
+              props={this.props}
+              handleSearchChange={this.handleSearchChange}
+              handleSearchSubmit={this.handleSearchSubmit}
+              handleSuggestionSelect={this.handleSuggestionSelect}
+            />
+          </section>
+          <section>
+            <BubbleChart data={this.state.data} handleClick={this.handleClick} colors={colorLegend} />
+          </section>
+        </div>
+        <div>
+          <USA data={this.state.d3} />
+        </div>
       </div>
     );
   }
