@@ -21,6 +21,10 @@ module.exports = {
         1,
         "only-multiline"
       ],
+      "new-cap": [
+        1,
+        { "capIsNewExceptions": ["TEXT", "DECIMAL"] }
+      ],
      "quotes": [
         1,
         "single"

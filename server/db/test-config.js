@@ -1,31 +1,29 @@
-const knex = require('knex')({
-  client: 'mysql',
-  connection: {
+const config = require('../../env/config');
+
+const Sequelize = require('sequelize');
+
+const sequelize = new Sequelize(
+  'app_test',
+  'root',
+  '',
+  {
     host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'app_test'
+    dialect: 'mysql'
   }
+);
+
+const News = sequelize.define('news', {
+  article_id: { type: Sequelize.STRING, unique: true },
+  title: { type: Sequelize.STRING },
+  rating: { type: Sequelize.STRING },
+  description: { type: Sequelize.TEXT('long') },
+  sentiment: { type: Sequelize.STRING },
+  url: { type: Sequelize.STRING },
+  published: { type: Sequelize.STRING },
+  lat: { type: Sequelize.DECIMAL(10, 8) },
+  lng: { type: Sequelize.DECIMAL(11, 8) },
 });
 
-knex.schema.hasTable('news').then(result => {
-  if (!result) {
-    console.log('adding table...');
-    return knex.schema.createTable('news', table => {
-      table.increments();
-      table.string('title');
-      table.integer('rating');
-      table.decimal('lat', 10, 8);
-      table.decimal('lng', 11, 8);
-      table.string('category');
-      table.string('description');
-      table.string('source');
-      table.string('url');
-      table.dateTime('published');
-      table.timestamp('created_at');
-    });
-  }
-  return 0;
-});
+News.sync();
 
-module.exports = knex;
+module.exports = News;
