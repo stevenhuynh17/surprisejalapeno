@@ -1,146 +1,146 @@
 // Testing123
 import React from 'react';
 import ReactDOM from 'react-dom';
-import rd3 from 'react-d3-library';
+// import rd3 from 'react-d3-library';
 
 import Search from './Search.jsx';
 import BubbleChart from './BubbleChart.jsx';
-import NationalMap from './NationalMap.jsx'; // NODE FILE
+// import NationalMap from './NationalMap.jsx'; // NODE FILE
 
-const USA = rd3.Component;
+// const USA = rd3.Component;
 
 // EXAMPLE FOR TESTING //
-const dummyData = [
-  {
-    storyName: 'example storyname 1',
-    url: 'https://www.google.com/',
-    rating: 22,
-    newsCategory: 1,
-    sentimentScore: -1
-  },
-  {
-    storyName: 'example storyname 2',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 2,
-    sentimentScore: -0.75
-  },
-  {
-    storyName: 'example storyname 3',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 4,
-    sentimentScore: -0.50
-  },
-  {
-    storyName: 'example storyname 4',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 3,
-    sentimentScore: -0.25
-  },
-  {
-    storyName: 'example storyname 5',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1,
-    sentimentScore: 0
-  },
-  {
-    storyName: 'example storyname 6',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1,
-    sentimentScore: 0.25
-  },
-  {
-    storyName: 'example storyname 7',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 2,
-    sentimentScore: 0.50
-  },
-  {
-    storyName: 'example storyname 8',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1,
-    sentimentScore: 0.75
-  },
-  {
-    storyName: 'example storyname 9',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1,
-    sentimentScore: 1
-  },
-  {
-    storyName: 'example storyname 14',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 2
-  },
-  {
-    storyName: 'example storyname 24',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 34',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 44',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 54',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 64',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 74',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 84',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 94',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 64',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 74',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  }
-];
+// const dummyData = [
+//   {
+//     storyName: 'example storyname 1',
+//     url: 'https://www.google.com/',
+//     rating: 22,
+//     newsCategory: 1,
+//     sentimentScore: -1
+//   },
+//   {
+//     storyName: 'example storyname 2',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 2,
+//     sentimentScore: -0.75
+//   },
+//   {
+//     storyName: 'example storyname 3',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 4,
+//     sentimentScore: -0.50
+//   },
+//   {
+//     storyName: 'example storyname 4',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 3,
+//     sentimentScore: -0.25
+//   },
+//   {
+//     storyName: 'example storyname 5',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1,
+//     sentimentScore: 0
+//   },
+//   {
+//     storyName: 'example storyname 6',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1,
+//     sentimentScore: 0.25
+//   },
+//   {
+//     storyName: 'example storyname 7',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 2,
+//     sentimentScore: 0.50
+//   },
+//   {
+//     storyName: 'example storyname 8',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1,
+//     sentimentScore: 0.75
+//   },
+//   {
+//     storyName: 'example storyname 9',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1,
+//     sentimentScore: 1
+//   },
+//   {
+//     storyName: 'example storyname 14',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 2
+//   },
+//   {
+//     storyName: 'example storyname 24',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1
+//   },
+//   {
+//     storyName: 'example storyname 34',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1
+//   },
+//   {
+//     storyName: 'example storyname 44',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1
+//   },
+//   {
+//     storyName: 'example storyname 54',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1
+//   },
+//   {
+//     storyName: 'example storyname 64',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1
+//   },
+//   {
+//     storyName: 'example storyname 74',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1
+//   },
+//   {
+//     storyName: 'example storyname 84',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1
+//   },
+//   {
+//     storyName: 'example storyname 94',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1
+//   },
+//   {
+//     storyName: 'example storyname 64',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1
+//   },
+//   {
+//     storyName: 'example storyname 74',
+//     url: 'https://www.google.com/',
+//     rating: 14,
+//     newsCategory: 1
+//   }
+// ];
 
 const colorLegend = [
   // COLOR SCALE EXAMPLE - WILL UPDATE
@@ -164,14 +164,14 @@ class App extends React.Component {
 
     // //////start testing//////////
     // to assign a random category (will come from db later)
-    const getCategory = () => Math.floor(Math.random() * 4);
+    // const getCategory = () => Math.floor(Math.random() * 4);
 
-    // to assign a random rating (will come from db later)
-    const getRating = () => {
-      const ratings = [4, 6, 8, 10, 11, 8, 20];
-      const rating = ratings[Math.floor(Math.random() * ratings.length)];
-      return rating;
-    };
+    // // to assign a random rating (will come from db later)
+    // const getRating = () => {
+    //   const ratings = [4, 6, 8, 10, 11, 8, 20];
+    //   const rating = ratings[Math.floor(Math.random() * ratings.length)];
+    //   return rating;
+    // };
 
     // console.log(getRating());
 
@@ -194,20 +194,21 @@ class App extends React.Component {
     };
 
     // iterate through story objects and assign random category and rating
-    dummyData.forEach((storyObj) => {
-      const testObj = storyObj;
-      const category1 = getCategory();
-      const rating = getRating();
-      const score = moodFactor(storyObj);
-      testObj.newsCategory = category1;
-      testObj.rating = rating;
-      testObj.sentimentScore = score;
-    });
+    // dummyData.forEach((storyObj) => {
+    //   const testObj = storyObj;
+    //   const category1 = getCategory();
+    //   const rating = getRating();
+    //   const score = moodFactor(storyObj);
+    //   testObj.newsCategory = category1;
+    //   testObj.rating = rating;
+    //   testObj.sentimentScore = score;
+    // });
     // /////end testing///////////
+
     this.state = {
       location: '',
       // remember to change back to empty array after done using dummy data
-      data: dummyData,
+      data: [],
       numBubbles: 0,
       d3: ''
     };
@@ -215,68 +216,63 @@ class App extends React.Component {
     console.log(this.state.data);
     // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleSuggestionSelect = this.handleSuggestionSelect.bind(this);
-    // this.getNewsByLocation = this.getNewsByLocation.bind(this);
+    this.getNewsByLocation = this.getNewsByLocation.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
+  // componentDidMount() {
+  //   this.setState({ d3: NationalMap });
+  // }
+
 
   // STEP 2: Make the AJAX call.
-  // getNewsByLocation(loc) {
-  //   console.log('inside getNewsByLocation');
-  //   console.log('location: ', loc);
-  //   this.setState({ data, numBubbles: data.length });
-  //   // const query = loc.split(' ').join('+');
-  //   // console.log('joined query: ', query);
-  //   // const encoded = encodeURIComponent(query);
-  //   // console.log('encoded: ', encoded);
-  //   /* global $ */
-  //   const locObj = JSON.stringify(loc);
+  getNewsByLocation(loc) {
+    console.log('inside getNewsByLocation');
+    console.log('location: ', loc);
+    // this.setState({ data, numBubbles: data.length });
+    // const query = loc.split(' ').join('+');
+    // console.log('joined query: ', query);
+    // const encoded = encodeURIComponent(query);
+    // console.log('encoded: ', encoded);
+    /* global $ */
+    const locObj = JSON.stringify(loc);
 
-  //   $.ajax({
-  //     method: 'GET',
-  //     url: '/query',
-  //     dataType: 'json',
-  //     data: { q: locObj },
-  //     success: (data) => {
-  //       // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
-  //       console.log('YOU MADE A SUCCESSFUL API CALL');
-  //       console.log('DATA RECEIVED, HERE YOU GO: ', data);
-  //       // to assign a random category (will come from db later)
-  //       // const getCategory = () => Math.floor(Math.random() * 4);
+    $.ajax({
+      method: 'GET',
+      url: '/query',
+      dataType: 'json',
+      data: { q: locObj },
+      success: (data) => {
+        // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
+        console.log('YOU MADE A SUCCESSFUL API CALL');
+        console.log('DATA RECEIVED, HERE YOU GO: ', data);
+        // to assign a random category (will come from db later)
 
-  //       // to assign a random rating (will come from db later)
-  //       const getRating = () => {
-  //         const ratings = [4, 6, 8, 10, 11, 8, 20];
-  //         const rating = ratings[Math.floor(Math.random() * ratings.length)];
-  //         return rating;
-  //       };
+        // to assign a random rating (will come from db later)
+        const getRating = () => {
+          const ratings = [4, 6, 8, 10, 11, 8, 20];
+          const rating = ratings[Math.floor(Math.random() * ratings.length)];
+          return rating;
+        };
 
-  //       // console.log(getRating());
+        // iterate through story objects and assign random category and rating
+        data.forEach((storyObj) => {
+          const rating = getRating();
+          storyObj.rating = rating;
+        });
 
-  //       // iterate through story objects and assign random category and rating
-  //       data.forEach((storyObj) => {
-  //         const testObj = storyObj;
-  //         // const category1 = getCategory();
-  //         // const rating = getRating();
-  //         // testObj.newsCategory = category1;
-  //         // testObj.rating = rating;
-  //       });
+        data = data.splice(0, 12);
 
-  //       data = data.splice(0, 12);
+        // changed from data.value
+        console.log('AMOUNT OF BUBBLES: ', data.length);
+        this.setState({ data, numBubbles: data.length });
+      },
 
-  //       // changed from data.value
-  //       console.log('AMOUNT OF BUBBLES: ', data.length);
-  //       this.setState({ data, numBubbles: data.length });
-  //     },
-
-  //     error: (err) => {
-  //       console.log('getNews err ', err);
-  //     }
-  //   });
-  // }
-  componentDidMount() {
-    this.setState({ d3: NationalMap });
+      error: (err) => {
+        console.log('getNews err ', err);
+      }
+    });
   }
 
   // STEP 1: changes state to location that was typed in. Invoke getNewsByLocation;
@@ -328,9 +324,6 @@ class App extends React.Component {
           <section>
             <BubbleChart data={this.state.data} handleClick={this.handleClick} colors={colorLegend} />
           </section>
-        </div>
-        <div>
-          <USA data={this.state.d3} />
         </div>
       </div>
     );
