@@ -6,7 +6,7 @@ const keys = require('./../../env/config');
 // given a placename, returns all news articles with that entity in the title
 // and body
 const getByPlace = (place) => {
-  console.log('getByPlace sherlock.js query builder input: ', place);
+  // console.log('getByPlace sherlock.js query builder input: ', place);
 
   // Base Alchemy News API endpoint
   let qUrl = 'https://gateway-a.watsonplatform.net/calls/data/GetNews';
@@ -16,11 +16,18 @@ const getByPlace = (place) => {
   let queries = {
     outputMode: 'json',
     start: 'now-1d',
+    dedup: 1,
+    dedupThreshold: 1.0,
     end: 'now',
-    count: 5,
-    return: 'enriched.url.title,enriched.url.text,'
-      + 'enriched.url.url,enriched.url.entities,'
-      + 'enriched.url.publicationDate.date',
+    // count: 5, // count is how many watson returns
+    // HOWEVER, they will charge many more transactions
+    // Based on what they FIND
+    return: 'enriched.url.title,'
+      + 'enriched.url.text,'
+      + 'enriched.url.url,'
+      + 'enriched.url.entities,'
+      + 'enriched.url.publicationDate.date,'
+      + 'enriched.url.keywords,',
     apikey: keys.watsonAPI
   };
 
@@ -31,8 +38,7 @@ const getByPlace = (place) => {
   qUrl = `${qUrl}?${queries}`;
 
   // Append the entity search to the base url.
-  qUrl += `&q.enriched.url.entities.entity=|text=${place}|`;
-
+  qUrl += `&q.enriched.url.entities.entity=|text=${place},type=City|`;
   // return a promise from the helpers geturl function
   return helpers.getUrl(qUrl).then(d => {
     const resp = JSON.parse(d);
@@ -42,7 +48,6 @@ const getByPlace = (place) => {
       console.log('Bad response from watson for query, ', place);
     }
 
-    console.log('return helpers.getUrl resp.result: ', resp);
     return resp.result;
   });
 };

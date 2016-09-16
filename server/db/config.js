@@ -16,6 +16,7 @@ const knex = require('knex')({
 knex.schema.hasTable('news').then(result => {
   if (!result) {
     return knex.schema.createTable('news', table => {
+      // TODO: Make increments UUID from watson
       table.increments();
       table.string('title');
       table.integer('rating');
