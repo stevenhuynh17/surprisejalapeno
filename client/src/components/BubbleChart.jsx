@@ -51,9 +51,10 @@ const BubbleChart = ({ data, handleClick }) => (
         colorValue: d.newsCategory,  // number, used to determine color
         selected: d.selected,        // boolean, uses selectedColor above for bubble if true
         url: d.url,                  // string, url for the article
-        displayText: <img src={d.image}/>
+        displayText: <img src={d.image} alt="bubble" />
       }))
-    }/>
+    }
+  />
 );
 
 BubbleChart.propTypes = {

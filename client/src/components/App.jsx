@@ -222,7 +222,7 @@ class App extends React.Component {
             success: (d) => {
               testObj.image = d.data[0].images.original.url;
               reqCount--;
-              if(reqCount === 0) {
+              if (reqCount === 0) {
                 this.setState({ data });
               }
             }
