@@ -43,6 +43,7 @@
   "dependencies": {
     "@google/maps": "^0.1.0",
     "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
     "d3": "^3.5.17",
     "express": "^4.14.0",
     "googleapis": "^12.4.0",

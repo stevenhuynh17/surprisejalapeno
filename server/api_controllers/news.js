@@ -97,14 +97,15 @@ function handleSearch(req, res, next) {
         // wait for the geocoding api to return (if it hasn't already)
         goog.geocode(location.label)
         .then((l) => {
-          // console.log('l input to locResult.then: ', l);
+          // console.log('Result of goog.geocode in news.js: ', l.json.results);
             // get the latitutde and longitude out of the center of the
             // geometry returned by the geocoding api
           const toSearch = l.json.results[0].geometry.location;
             // models searches by a radius. This is just hard coded
             // this could be used as user input later
           toSearch.rad = 25;
-          model.news.getByLocation(toSearch)
+          // Currently querying EVERYTHING, but should change to location
+          model.news.fetchAll(toSearch)
             .then(dbResponse => {
               // console.log('handleSearch dbResponse: ', dbResponse);
               // send the response from the db getbylocation as json

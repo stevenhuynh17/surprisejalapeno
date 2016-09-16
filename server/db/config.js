@@ -26,4 +26,4 @@ const News = sequelize.define('news', {
 
 News.sync();
 
-module.exports = News;
+module.exports = { News, sequelize };
