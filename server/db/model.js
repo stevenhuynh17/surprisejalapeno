@@ -34,11 +34,9 @@ module.exports = {
       // // .limit(100)
       // .catch(err => console.log('Error getting by location'));
       return db.findAll()
-        .then((data) => {
-          return data;
-        })
+        .then((data) => data)
         .catch((err) => {
-          console.log('Error fetching all data: ');
+          console.log('Error fetching all data: ', err);
         });
     },
     add(data) {
@@ -55,7 +53,7 @@ module.exports = {
           // console.log('Data returned from bulkCreate: ', dbRes);
         })
         .catch((err) => {
-          console.log('Error with bulkCreate: ');
+          console.log('Error with bulkCreate: ', err);
         });
       // Knex does not have upsert. Above 'add' breaks on duplicate articles
       // use db.raw(<YOUR QUERY HERE>) to build your own upsert
