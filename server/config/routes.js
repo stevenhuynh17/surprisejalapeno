@@ -6,5 +6,5 @@ module.exports = (app) => {
   // expects the URI to have a query parameter
   app.get('/query', news.handleSearch);
   // Test model.js queries to the database endpoint
-  app.post('/test-query', testModelCtrl.news.testGetByLocation);
+  app.post('/test-query', testModelCtrl.news.test);
 };
