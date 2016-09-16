@@ -20,14 +20,16 @@ const BubbleChart = ({ data, handleClick, colors }) => (
     selectedTextColor="#d9d9d9"        // for when bubble is 'selected'
     // fixedDomain={{ min: 0, max: 3 }}   // works with color legend - see react-bubble-chart docs
     onClick={handleClick}              // NEED TO SET CLICK HANDLER HERE FOR OPENING NEWS URL:  onClick={}
-    data={data.map(d => ({
-      _id: getID(),           // string, unique id (required) --> we didn't have this before React
-      value: d.rating,             // number, to determine relative size of bubbles (required)
-      colorValue: d.sentimentScore,  // number, used to determine color from color legend above*****
-      selected: d.selected,        // boolean, uses selectedColor above for bubble if true
-      url: d.url,                  // string, url for the article
-      displayText: d.storyName
-    }))}
+    data={
+      data.map(d => ({
+        _id: getID(),           // string, unique id (required) --> we didn't have this before React
+        value: d.rating,             // number, to determine relative size of bubbles (required)
+        colorValue: d.newsCategory,  // number, used to determine color
+        selected: d.selected,        // boolean, uses selectedColor above for bubble if true
+        url: d.url,                  // string, url for the article
+        displayText: <img src={d.image} alt="bubble" />
+      }))
+    }
   />
 );
 
@@ -37,31 +39,3 @@ BubbleChart.propTypes = {
 };
 
 export default BubbleChart;
-
-// Here are the data formats that react-bubble-chart is set up to receive:
-/*
-
-An array of data objects (defined below) used to populate the bubble chart.
-{
-   _id: string,        // unique id (required)
-   value: number,      // used to determine relative size of bubbles (required)
-   displayText: string,// will use _id if undefined
-   colorValue: number, // used to determine color
-   selected: boolean,  // if true will use selectedColor/selectedTextColor
-                          for circle/text
-}
-
-Can also be a nested JSON object if you want a nested bubble chart.
-That would look like:
-{
-  _id: string,
-  children: [
-    {data object},
-    {data object},
-    {
-      _id: string,
-      children: [...]
-    }
-  ]
-
-*/

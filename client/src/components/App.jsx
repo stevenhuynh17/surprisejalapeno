@@ -1,4 +1,3 @@
-// Testing123
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import rd3 from 'react-d3-library';
@@ -10,138 +9,6 @@ import BubbleChart from './BubbleChart.jsx';
 // const USA = rd3.Component;
 
 // EXAMPLE FOR TESTING //
-// const dummyData = [
-//   {
-//     storyName: 'example storyname 1',
-//     url: 'https://www.google.com/',
-//     rating: 22,
-//     newsCategory: 1,
-//     sentimentScore: -1
-//   },
-//   {
-//     storyName: 'example storyname 2',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 2,
-//     sentimentScore: -0.75
-//   },
-//   {
-//     storyName: 'example storyname 3',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 4,
-//     sentimentScore: -0.50
-//   },
-//   {
-//     storyName: 'example storyname 4',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 3,
-//     sentimentScore: -0.25
-//   },
-//   {
-//     storyName: 'example storyname 5',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1,
-//     sentimentScore: 0
-//   },
-//   {
-//     storyName: 'example storyname 6',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1,
-//     sentimentScore: 0.25
-//   },
-//   {
-//     storyName: 'example storyname 7',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 2,
-//     sentimentScore: 0.50
-//   },
-//   {
-//     storyName: 'example storyname 8',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1,
-//     sentimentScore: 0.75
-//   },
-//   {
-//     storyName: 'example storyname 9',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1,
-//     sentimentScore: 1
-//   },
-//   {
-//     storyName: 'example storyname 14',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 2
-//   },
-//   {
-//     storyName: 'example storyname 24',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1
-//   },
-//   {
-//     storyName: 'example storyname 34',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1
-//   },
-//   {
-//     storyName: 'example storyname 44',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1
-//   },
-//   {
-//     storyName: 'example storyname 54',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1
-//   },
-//   {
-//     storyName: 'example storyname 64',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1
-//   },
-//   {
-//     storyName: 'example storyname 74',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1
-//   },
-//   {
-//     storyName: 'example storyname 84',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1
-//   },
-//   {
-//     storyName: 'example storyname 94',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1
-//   },
-//   {
-//     storyName: 'example storyname 64',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1
-//   },
-//   {
-//     storyName: 'example storyname 74',
-//     url: 'https://www.google.com/',
-//     rating: 14,
-//     newsCategory: 1
-//   }
-// ];
-
 const colorLegend = [
   // COLOR SCALE EXAMPLE - WILL UPDATE
   // reds from dark to light
@@ -155,7 +22,129 @@ const colorLegend = [
   '#c6dbef',
   '#6baed6',
   { color: '#2171b5', textColor: '#deebf7' },
-  { color: '#08306b', textColor: '#deebf7', text: 'Positive' }
+  { color: '#08306b', textColor: '#deebf7', text: 'Positive' }];
+
+const dummyData = [
+  {
+    storyName: 'example storyname 1',
+    url: 'https://www.google.com/',
+    rating: 22,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 2',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 2
+  },
+  {
+    storyName: 'example storyname 3',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 4
+  },
+  {
+    storyName: 'example storyname 4',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 3
+  },
+  {
+    storyName: 'example storyname 5',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 6',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 7',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 2
+  },
+  {
+    storyName: 'example storyname 8',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 9',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 14',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 2
+  },
+  {
+    storyName: 'example storyname 24',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 34',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 44',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 54',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 64',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 74',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 84',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 94',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 64',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  },
+  {
+    storyName: 'example storyname 74',
+    url: 'https://www.google.com/',
+    rating: 14,
+    newsCategory: 1
+  }
 ];
 
 class App extends React.Component {
@@ -203,6 +192,7 @@ class App extends React.Component {
     //   testObj.rating = rating;
     //   testObj.sentimentScore = score;
     // });
+
     // /////end testing///////////
 
     this.state = {
@@ -213,7 +203,6 @@ class App extends React.Component {
       d3: ''
     };
 
-    console.log(this.state.data);
     // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleSuggestionSelect = this.handleSuggestionSelect.bind(this);
     this.getNewsByLocation = this.getNewsByLocation.bind(this);
@@ -230,7 +219,6 @@ class App extends React.Component {
   getNewsByLocation(loc) {
     console.log('inside getNewsByLocation');
     console.log('location: ', loc);
-    // this.setState({ data, numBubbles: data.length });
     // const query = loc.split(' ').join('+');
     // console.log('joined query: ', query);
     // const encoded = encodeURIComponent(query);
@@ -245,9 +233,9 @@ class App extends React.Component {
       data: { q: locObj },
       success: (data) => {
         // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
-        console.log('YOU MADE A SUCCESSFUL API CALL');
-        console.log('DATA RECEIVED, HERE YOU GO: ', data);
+
         // to assign a random category (will come from db later)
+        const getCategory = () => Math.floor(Math.random() * 4);
 
         // to assign a random rating (will come from db later)
         const getRating = () => {
@@ -256,17 +244,38 @@ class App extends React.Component {
           return rating;
         };
 
+        data = data.slice(0, 50);
+        console.log('rendering', data.length, ' gifs');
+
         // iterate through story objects and assign random category and rating
+        let reqCount = 0;
         data.forEach((storyObj) => {
+          const testObj = storyObj;
+          const category1 = getCategory();
           const rating = getRating();
-          storyObj.rating = rating;
+          testObj.newsCategory = category1;
+          testObj.newsCategory = category1;
+          testObj.rating = rating;
+
+          reqCount++;
+
+          $.ajax({
+            method: 'GET',
+            url: `http://api.giphy.com/v1/gifs/search`,
+            dataType: 'json',
+            data: {
+              q: storyObj.title,
+              api_key: 'dc6zaTOxFJmzC'
+            },
+            success: (d) => {
+              testObj.image = d.data[0].images.original.url;
+              reqCount--;
+              if (reqCount === 0) {
+                this.setState({ data });
+              }
+            }
+          }); // End of giphy AJAX call
         });
-
-        data = data.splice(0, 12);
-
-        // changed from data.value
-        console.log('AMOUNT OF BUBBLES: ', data.length);
-        this.setState({ data, numBubbles: data.length });
       },
 
       error: (err) => {
@@ -275,14 +284,12 @@ class App extends React.Component {
     });
   }
 
-  // STEP 1: changes state to location that was typed in. Invoke getNewsByLocation;
   handleSuggestionSelect(e) {
     console.log('selection e:', e);
     const loc = e.label;
     this.setState({ location: loc });
     this.getNewsByLocation(e);
   }
-
 
   // Possible redundant code --> It is getting passed down to submit
     // But it is never being called
@@ -303,12 +310,11 @@ class App extends React.Component {
     this.setState({ location: e.target.value });
   }
 
-  handleClick(d) {
-    console.log('inside handleClick, d:', d);
+  handleClick(d, e) {
+    console.log('inside handleClick, d:', d, this, e);
     window.open(d.url);
   }
 
-  // handleSuggestionSelect gets invoked!!!
   render() {
     return (
       <div>
