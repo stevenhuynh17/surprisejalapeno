@@ -7,7 +7,7 @@ const Promise = require('bluebird');
 // and returns a promise that will be fulfilled
 // with the body
 function getUrl(url, headers) {
-  console.log('getUrl value sent to watson api: ', url);
+  // console.log('getUrl value sent to watson api: ', url);
   return new Promise((fulfill, reject) => {
     const options = {
       method: 'GET',
