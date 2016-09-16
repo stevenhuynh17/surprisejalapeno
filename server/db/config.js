@@ -12,26 +12,27 @@ const sequelize = new Sequelize(
   }
 );
 
-sequelize.authenticate()
-  .then((data) => {
-    console.log('Connection has been established successfully: ', data);
-  })
-  .catch((err) => {
-    console.log('there was a problem: ', err);
-  });
+// sequelize.authenticate()
+//   .then((data) => {
+//     console.log('Connection has been established successfully: ', data);
+//   })
+//   .catch((err) => {
+//     console.log('there was a problem: ', err);
+//   });
 
 const News = sequelize.define('news', {
   article_id: { type: Sequelize.STRING, unique: true },
   title: { type: Sequelize.STRING },
   rating: { type: Sequelize.STRING },
   description: { type: Sequelize.TEXT('long') },
+  sentiment: { type: Sequelize.STRING },
   url: { type: Sequelize.STRING },
   published: { type: Sequelize.STRING },
   lat: { type: Sequelize.DECIMAL(10, 8) },
   lng: { type: Sequelize.DECIMAL(11, 8) },
 });
 
-News.sync();
+News.sync({ force: true });
 // News.sync({ force: true })
   // .then(() => {
   //   return News.create({
