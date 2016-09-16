@@ -19,7 +19,7 @@ module.exports = {
       // returns results in order of increasing distance from loc also return a
       // "distance" property that represents the entity's distance from the
       // midpoint
-      console.log('Input values to getByLocation in model.js: ', loc);
+      // console.log('Input values to getByLocation in model.js: ', loc);
       return db
       // .select(db.raw(`*, (
       //   3959 * acos(cos(radians(${loc.lat})) * cos(radians(lat)) *
