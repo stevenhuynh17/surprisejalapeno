@@ -27,19 +27,23 @@ function getGeo(ent) {
   return geo;
 }
 
+const roundSentiment = (num) => (Math.round(num * 4) / 4).toFixed(2).toString();
+
 // ERROR RIGHT HERE
 function resultsToDb(results) {
   // console.log('resultsToDb func call params: ', JSON.stringify(results));
   // trim results to the appropriate format
   // toAdd is an Array of results formatted to match the db schema
+
   const toAdd = results.docs.map(doc => {
     const d = doc.source;
     const geo = getGeo(d.enriched.url.entities);
+    const sentAvg = roundSentiment(d.enriched.url.docSentiment.score);
+
     console.log('resultsToDb doc.id value: ', doc.id);
 
     return {
       // this is all just mapping watson return values to db schema names
-      // TODO: Make increments UUID from watson
       // TODO: Make category from watson
       // TODO: Make source from watson
       // TODO: Make rating from watson
@@ -51,6 +55,7 @@ function resultsToDb(results) {
         'null',
       // category: d.enriched.url.keywords || 'null',
       description: d.enriched.url.text,
+      sentiment: sentAvg,
       // source: 'null',
       url: d.enriched.url.url,
       published: d.enriched.url.publicationDate.date,

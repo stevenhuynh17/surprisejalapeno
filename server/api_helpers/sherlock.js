@@ -27,7 +27,8 @@ const getByPlace = (place) => {
       + 'enriched.url.url,'
       + 'enriched.url.entities,'
       + 'enriched.url.publicationDate.date,'
-      + 'enriched.url.keywords,',
+      + 'enriched.url.keywords,'
+      + 'enriched.url.docSentiment.score',
     apikey: keys.watsonAPI
   };
 

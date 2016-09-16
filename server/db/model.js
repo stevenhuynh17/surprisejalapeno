@@ -35,10 +35,10 @@ module.exports = {
       // .catch(err => console.log('Error getting by location'));
       return db.findAll()
         .then((data) => {
-          console.log('Results of query in getByLocation: ', data);
+          return data;
         })
         .catch((err) => {
-          console.log('Error fetching all data: ', err);
+          console.log('Error fetching all data: ');
         });
     },
     add(data) {
@@ -50,12 +50,12 @@ module.exports = {
       // .catch(err => console.log(`Error inserting into "news" table`
       //   // `${err}`
       //   ));
-      return db.bulkCreate(data, { ignoresDuplicates: true })
+      return db.bulkCreate(data, { ignoreDuplicates: true })
         .then((dbRes) => {
-          console.log('Data returned from bulkCreate: ', dbRes);
+          // console.log('Data returned from bulkCreate: ', dbRes);
         })
         .catch((err) => {
-          console.log('Error with bulkCreate: ', err);
+          console.log('Error with bulkCreate: ');
         });
       // Knex does not have upsert. Above 'add' breaks on duplicate articles
       // use db.raw(<YOUR QUERY HERE>) to build your own upsert
