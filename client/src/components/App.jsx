@@ -12,57 +12,63 @@ const dummyData = [
     url: 'https://www.google.com/',
     rating: 22,
     newsCategory: 1,
-    sentimentScore: 0
+    sentimentScore: -1
   },
   {
     storyName: 'example storyname 2',
     url: 'https://www.google.com/',
     rating: 14,
     newsCategory: 2,
-    sentimentScore: 1
+    sentimentScore: -0.75
   },
   {
     storyName: 'example storyname 3',
     url: 'https://www.google.com/',
     rating: 14,
     newsCategory: 4,
-    sentimentScore: -1
+    sentimentScore: -0.50
   },
   {
     storyName: 'example storyname 4',
     url: 'https://www.google.com/',
     rating: 14,
-    newsCategory: 3
+    newsCategory: 3,
+    sentimentScore: -0.25
   },
   {
     storyName: 'example storyname 5',
     url: 'https://www.google.com/',
     rating: 14,
-    newsCategory: 1
+    newsCategory: 1,
+    sentimentScore: 0
   },
   {
     storyName: 'example storyname 6',
     url: 'https://www.google.com/',
     rating: 14,
-    newsCategory: 1
+    newsCategory: 1,
+    sentimentScore: 0.25
   },
   {
     storyName: 'example storyname 7',
     url: 'https://www.google.com/',
     rating: 14,
-    newsCategory: 2
+    newsCategory: 2,
+    sentimentScore: 0.50
   },
   {
     storyName: 'example storyname 8',
     url: 'https://www.google.com/',
     rating: 14,
-    newsCategory: 1
+    newsCategory: 1,
+    sentimentScore: 0.75
   },
   {
     storyName: 'example storyname 9',
     url: 'https://www.google.com/',
     rating: 14,
-    newsCategory: 1
+    newsCategory: 1,
+    sentimentScore: 1
   },
   {
     storyName: 'example storyname 14',
@@ -132,6 +138,22 @@ const dummyData = [
   }
 ];
 
+const colorLegend = [
+  // COLOR SCALE EXAMPLE - WILL UPDATE
+  // reds from dark to light
+  { color: '#ff291f', textColor: '#fee0d2', text: 'Negative' },
+  { color: '#cb181d', textColor: '#fee0d2' },
+  '#fb6a4a',
+  '#fcbba1',
+  // neutral grey
+  { color: '#b0b6aa', text: 'Neutral' },
+  // // blues from light to dark
+  '#c6dbef',
+  '#6baed6',
+  { color: '#2171b5', textColor: '#deebf7' },
+  { color: '#08306b', textColor: '#deebf7', text: 'Positive' }
+];
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -150,12 +172,21 @@ class App extends React.Component {
     // console.log(getRating());
 
     const moodFactor = (obj) => {
-      console.log(obj.sentimentScore);
-      if (obj.sentimentScore < 0) {
-        return 0;
-      } else if (obj.sentimentScore > 0) {
-        return 2;
-      } return 1;
+      const sentimentLevel = {
+        '-1': 0,
+        '-0.75': 1,
+        '-0.50': 2,
+        '-0.25': 3,
+        0: 4,
+        0.25: 5,
+        0.50: 6,
+        0.75: 7,
+        1: 8
+      };
+      if (obj.sentimentScore) {
+        return sentimentLevel[obj.sentimentScore];
+      }
+      return sentimentLevel[0];
     };
 
     // iterate through story objects and assign random category and rating
@@ -286,7 +317,7 @@ class App extends React.Component {
           />
         </section>
         <section>
-          <BubbleChart data={this.state.data} handleClick={this.handleClick} />
+          <BubbleChart data={this.state.data} handleClick={this.handleClick} colors={colorLegend} />
         </section>
       </div>
     );
