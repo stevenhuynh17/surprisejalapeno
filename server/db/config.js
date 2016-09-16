@@ -3,11 +3,11 @@ const config = require('../../env/config');
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(
-  'app_test',
-  'root',
-  '',
+  'app',
+  config.DB_USER,
+  config.DB_PASSWORD,
   {
-    host: 'localhost',
+    host: config.DB_HOST,
     dialect: 'mysql'
   }
 );
@@ -25,3 +25,5 @@ const News = sequelize.define('news', {
 });
 
 News.sync();
+
+module.exports = News;
