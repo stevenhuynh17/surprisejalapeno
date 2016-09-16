@@ -1,3 +1,5 @@
+[![Stories in Ready](https://badge.waffle.io/clueless-cello/surprisejalapeno.png?label=ready&title=Ready)](http://waffle.io/clueless-cello/surprisejalapeno)
+
 # Surprise Jalapeño: NewsMapper
 [![Build Status](https://travis-ci.org/clueless-cello/surprisejalapeno.svg?branch=master)](https://travis-ci.org/clueless-cello/surprisejalapeno)
 
