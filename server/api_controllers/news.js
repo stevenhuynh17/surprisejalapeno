@@ -27,7 +27,7 @@ function getGeo(ent) {
   return geo;
 }
 
-const roundSentiment = (num) => (Math.round(num * 4) / 4).toFixed(2).toString();
+const roundSentiment = (num) => (Math.round(((num + 1) / 2) * 100) + 240);
 
 // ERROR RIGHT HERE
 function resultsToDb(results) {
