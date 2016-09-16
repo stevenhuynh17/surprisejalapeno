@@ -25,9 +25,8 @@ const getByPlace = (place) => {
     return: 'enriched.url.title,'
       + 'enriched.url.text,'
       + 'enriched.url.url,'
-      + 'enriched.url.entities,'
       + 'enriched.url.publicationDate.date,'
-      + 'enriched.url.keywords,'
+      + 'enriched.url.entities,'
       + 'enriched.url.docSentiment.score',
     apikey: keys.watsonAPI
   };
@@ -45,8 +44,8 @@ const getByPlace = (place) => {
     const resp = JSON.parse(d);
 
     if (resp.status !== 'OK') {
-      // console.log('Status is, ', resp);
-      // console.log('Bad response from watson for query, ', place);
+      console.log('Status is, ', resp);
+      console.log('Bad response from watson for query, ', place);
     }
 
     return resp.result;

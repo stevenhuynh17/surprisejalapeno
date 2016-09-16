@@ -17,7 +17,7 @@ const News = sequelize.define('news', {
   title: { type: Sequelize.STRING },
   rating: { type: Sequelize.STRING },
   description: { type: Sequelize.TEXT('long') },
-  sentiment: { type: Sequelize.STRING },
+  sentiment: { type: Sequelize.INTEGER },
   url: { type: Sequelize.STRING },
   published: { type: Sequelize.STRING },
   lat: { type: Sequelize.DECIMAL(10, 8) },

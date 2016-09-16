@@ -27,7 +27,7 @@ function getGeo(ent) {
   return geo;
 }
 
-const roundSentiment = (num) => (Math.round(num * 4) / 4).toFixed(2).toString();
+const roundSentiment = (num) => (Math.round(((num + 1) / 2) * 100) + 240);
 
 // ERROR RIGHT HERE
 function resultsToDb(results) {
@@ -47,16 +47,13 @@ function resultsToDb(results) {
       // TODO: Make category from watson
       // TODO: Make source from watson
       // TODO: Make rating from watson
-      // TODO: Add sentiment from watson
       article_id: doc.id,
       title: d.enriched.url.title,
       rating: d.enriched.url.relevance ?
         (d.enriched.url.relevance).toString() :
         'null',
-      // category: d.enriched.url.keywords || 'null',
       description: d.enriched.url.text,
       sentiment: sentAvg,
-      // source: 'null',
       url: d.enriched.url.url,
       published: d.enriched.url.publicationDate.date,
       lat: geo.lat,
