@@ -22,6 +22,13 @@ const config = {
         }
       }
     ]
+  },
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: 'config.js'
+      }
+    }
   }
 };
 
