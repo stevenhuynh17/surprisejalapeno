@@ -12,12 +12,16 @@ const getID = () => {
   return stringID;
 };
 
-const Tooltip = ({ name }) => (
-  <div>{name}</div>
+const Tooltip = ({ name, description }) => (
+  <div className="tooltip">
+    <h3>{name}</h3>
+    <p>{description.slice(0, 200)}...</p>
+  </div>
 );
 
 Tooltip.propTypes = {
-  name: React.PropTypes.string
+  name: React.PropTypes.string,
+  description: React.PropTypes.string
 };
 
 // const borderStyle = {
@@ -30,7 +34,11 @@ Tooltip.propTypes = {
 // };
 
 const setTooltip = (elem, data) => {
-  ReactDOM.render(<Tooltip name={data.data.title} />, elem);
+  ReactDOM.render(
+    <Tooltip
+      name={data.data.title}
+      description={data.data.description}
+    />, elem);
   console.log(elem, data);
 };
 
