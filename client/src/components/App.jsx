@@ -178,7 +178,7 @@ class App extends React.Component {
             />
           </section>
           <section>
-            <BubbleChart data={this.state.data} handleClick={this.handleClick} colors={colorLegend} />
+            <BubbleChart data={this.state.data} handleClick={this.handleClick} />
           </section>
         </div>
       </div>

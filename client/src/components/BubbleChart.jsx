@@ -35,9 +35,9 @@ const setTooltip = (elem, data) => {
 };
 
 console.log('INSIDE BUBBLECHART');
-const BubbleChart = ({ data, handleClick, colors }) => (
+const BubbleChart = ({ data, handleClick }) => (
   <ReactBubbleChart
-    colorLegend={colors}          // this renders everything black if undefined
+    // colorLegend={colors}          // this renders everything black if undefined
     legend={false}                     // if true, create and show a legend based on the passed colors
     selectedColor="#737373"            // for when bubble is 'selected'
     selectedTextColor="#d9d9d9"        // for when bubble is 'selected'
@@ -53,14 +53,18 @@ const BubbleChart = ({ data, handleClick, colors }) => (
         selected: d.selected,        // boolean, uses selectedColor above for bubble if true
         url: d.url,                  // string, url for the article
         data: d,
-        displayText: <img src={d.image} alt={console.log(d.sentiment)} style={{
-          'border-style': 'solid',
-          'border-width': '5px',
-          'border-color': 'hsl(' + d.sentiment + ', 100%, 50%)',
-          'border-radius': '100%',
-          width: '100%',
-          height: '100%'
-        }} />
+        displayText: <img
+          src={d.image}
+          alt={console.log(d.sentiment)}
+          style={{
+            'border-style': 'solid',
+            'border-width': '5px',
+            'border-color': `hsl(${d.sentiment}, 100%, 50%)`,
+            'border-radius': '100%',
+            width: '100%',
+            height: '100%'
+          }}
+        />
       }))
     }
   />
