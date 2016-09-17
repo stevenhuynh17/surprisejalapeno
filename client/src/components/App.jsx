@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import io from 'socket.io-client';
 // import rd3 from 'react-d3-library';
 
 import Search from './Search.jsx';
@@ -7,6 +8,7 @@ import BubbleChart from './BubbleChart.jsx';
 // import NationalMap from './NationalMap.jsx'; // NODE FILE
 
 // const USA = rd3.Component;
+
 
 class App extends React.Component {
   constructor(props) {
@@ -71,6 +73,12 @@ class App extends React.Component {
     // console.log('encoded: ', encoded);
     /* global $ */
     const locObj = JSON.stringify(loc);
+
+    // Put the socket emit within this
+    const socket = io.connect('localhost:3000');
+    socket.on('connect', (data) => {
+      socket.emit('join', 'YOLO');
+    });
 
     $.ajax({
       method: 'GET',
