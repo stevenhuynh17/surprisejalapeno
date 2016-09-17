@@ -164,23 +164,23 @@ class App extends React.Component {
 
     // console.log(getRating());
 
-    const moodFactor = (obj) => {
-      const sentimentLevel = {
-        '-1': 0,
-        '-0.75': 1,
-        '-0.50': 2,
-        '-0.25': 3,
-        0: 4,
-        0.25: 5,
-        0.50: 6,
-        0.75: 7,
-        1: 8
-      };
-      if (obj.sentimentScore) {
-        return sentimentLevel[obj.sentimentScore];
-      }
-      return sentimentLevel[0];
-    };
+    // const moodFactor = (obj) => {
+    //   const sentimentLevel = {
+    //     '-1': 0,
+    //     '-0.75': 1,
+    //     '-0.50': 2,
+    //     '-0.25': 3,
+    //     0: 4,
+    //     0.25: 5,
+    //     0.50: 6,
+    //     0.75: 7,
+    //     1: 8
+    //   };
+    //   if (obj.sentimentScore) {
+    //     return sentimentLevel[obj.sentimentScore];
+    //   }
+    //   return sentimentLevel[0];
+    // };
 
     // iterate through story objects and assign random category and rating
     // dummyData.forEach((storyObj) => {

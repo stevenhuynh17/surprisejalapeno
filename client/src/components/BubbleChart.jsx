@@ -20,6 +20,15 @@ Tooltip.propTypes = {
   name: React.PropTypes.string
 };
 
+// const borderStyle = {
+//   'border-style': 'solid',
+//   'border-width': '10px',
+//   'border-color': 'red',
+//   'border-radius': 100%,
+//   width: '100%',
+//   height: '100%'
+// };
+
 const setTooltip = (elem, data) => {
   ReactDOM.render(<Tooltip name={data.data.title} />, elem);
   console.log(elem, data);
@@ -44,7 +53,14 @@ const BubbleChart = ({ data, handleClick, colors }) => (
         selected: d.selected,        // boolean, uses selectedColor above for bubble if true
         url: d.url,                  // string, url for the article
         data: d,
-        displayText: <img src={d.image} alt="bubble" />
+        displayText: <img src={d.image} alt={console.log(d.sentiment)} style={{
+          'border-style': 'solid',
+          'border-width': '5px',
+          'border-color': 'hsl(' + d.sentiment + ', 100%, 50%)',
+          'border-radius': '100%',
+          width: '100%',
+          height: '100%'
+        }} />
       }))
     }
   />

@@ -89,28 +89,28 @@ function handleSearch(req, res, next) {
   // sherlock is the Watson API file
   // give it the word from the query
   // send the results to the db after some light parsing and then
-  sherlock.getByPlace(city)
-    .then(d => resultsToDb(d))
-    .then(
-      () => {
-        // console.log('wait for geocoding api complete');
-        // wait for the geocoding api to return (if it hasn't already)
-        goog.geocode(location.label)
-        .then((l) => {
-          // console.log('l input to locResult.then: ', l);
-            // get the latitutde and longitude out of the center of the
-            // geometry returned by the geocoding api
-          const toSearch = l.json.results[0].geometry.location;
-            // models searches by a radius. This is just hard coded
-            // this could be used as user input later
-          toSearch.rad = 25;
-          model.news.getByLocation(toSearch)
+  // sherlock.getByPlace(city)
+  //   .then(d => resultsToDb(d))
+  //   .then(
+  //     () => {
+  //       // console.log('wait for geocoding api complete');
+  //       // wait for the geocoding api to return (if it hasn't already)
+  //       goog.geocode(location.label)
+  //       .then((l) => {
+  //         // console.log('l input to locResult.then: ', l);
+  //           // get the latitutde and longitude out of the center of the
+  //           // geometry returned by the geocoding api
+  //         const toSearch = l.json.results[0].geometry.location;
+  //           // models searches by a radius. This is just hard coded
+  //           // this could be used as user input later
+  //         toSearch.rad = 25;
+          model.news.getByLocation(city)
             .then(dbResponse => {
               // console.log('handleSearch dbResponse: ', dbResponse);
               // send the response from the db getbylocation as json
               res.json(dbResponse);
-            });
-        });
+        //     });
+        // });
       })
     .catch(e => next(e));
 }
