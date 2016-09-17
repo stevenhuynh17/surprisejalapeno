@@ -75,7 +75,7 @@ class App extends React.Component {
     const locObj = JSON.stringify(loc);
 
     // Put the socket emit within this
-    const socket = io.connect('ws://' + location.host);
+    const socket = io.connect(`ws://${location.host}`);
 
     socket.on('connect', (data) => {
       console.log('connected!');
