@@ -13,13 +13,15 @@ const io = require('socket.io')(server);
  * Then we put the results of the watson query into the db, and return a query
  * by range from the db.
  */
-
+const response = { hello: 'world' };
 io.on('connect', (client) => {
   console.log('Client connected...');
 
   client.on('join', (data) => {
     console.log('This should be YOLO, ', data);
   });
+
+  client.emit('new articles', () => response);
 });
 // middleware is all in config/middleware
 require('./config/middleware')(app, express);

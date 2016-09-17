@@ -5,6 +5,7 @@ import io from 'socket.io-client';
 import Search from './Search.jsx';
 import BubbleChart from './BubbleChart.jsx';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
