@@ -32,7 +32,7 @@ const BubbleChart = ({ data, handleClick, colors }) => (
         colorValue: d.newsCategory,  // number, used to determine color
         selected: d.selected,        // boolean, uses selectedColor above for bubble if true
         url: d.url,                  // string, url for the article
-        displayText: <img src="http://i.imgur.com/yafuFev.gifv" alt="bubble" style={{border: "20px solid hsla(340,100%,50%,0.3)"}} />
+        displayText: <img src={d.image} alt="bubble" />
       }))
     }
   />

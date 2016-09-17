@@ -277,7 +277,6 @@ class App extends React.Component {
         // changed from data.value
         this.setState({ data });
       },
-
       error: (err) => {
         console.log('getNews err ', err);
       }
