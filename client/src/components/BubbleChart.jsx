@@ -40,8 +40,12 @@ const Tooltip = ({ name }) => (
   <div>{name}</div>
 );
 
+Tooltip.propTypes = {
+  name: React.PropTypes.string
+};
+
 const setTooltip = (elem, data) => {
-  ReactDOM.render(<Tooltip name={data.data.title}/>, elem);
+  ReactDOM.render(<Tooltip name={data.data.title} />, elem);
   console.log(elem, data);
 };
 
@@ -54,7 +58,7 @@ const BubbleChart = ({ data, handleClick }) => (
     selectedTextColor="#d9d9d9"        // for when bubble is 'selected'
     fixedDomain={{ min: 0, max: 3 }}   // works with color legend - see react-bubble-chart docs
     onClick={handleClick}              // NEED TO SET CLICK HANDLER HERE FOR OPENING NEWS URL:  onClick={}
-    tooltip={true}
+    tooltip
     tooltipFunc={setTooltip}
     data={
       data.map(d => ({
