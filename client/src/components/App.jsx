@@ -194,6 +194,7 @@ class App extends React.Component {
     // });
 
     // /////end testing///////////
+    console.log('test');
 
     this.state = {
       location: '',
