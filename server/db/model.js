@@ -16,6 +16,7 @@ module.exports = {
     //   .catch(err => console.log(`Error getting record by title ${err}`));
     // },
 
+    // Build test queries here:
     test(req, res, next) {
       const geo = req.body;
       // loc should be object {lat, lng, rad}
@@ -47,14 +48,13 @@ module.exports = {
       //   ));
       return db.News.bulkCreate(data, { ignoreDuplicates: true })
         .then((dbRes) => {
-          console.log('Data returned from bulkCreate: ', dbRes);
+          // Only return articles that have:
+          // Instance.dataValues.isNewRecord: true
+          // console.log('Data returned from bulkCreate: ', dbRes);
         })
         .catch((err) => {
           console.log('Error with bulkCreate: ', err);
         });
-      // Knex does not have upsert. Above 'add' breaks on duplicate articles
-      // use db.raw(<YOUR QUERY HERE>) to build your own upsert
-      // return db.schema.raw(``)
     }
   }
 };

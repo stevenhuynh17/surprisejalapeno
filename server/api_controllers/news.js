@@ -71,11 +71,11 @@ const findCity = (arr) => {
   return city;
 };
 
-const storeWatson = (city) => {
+const storeWatson = (city, location) => (
   // sherlock is the Watson API file
   // give it the word from the query
   // send the results to the db after some light parsing and then
-  return sherlock.getByPlace(city)
+  sherlock.getByPlace(city)
     .then(d => resultsToDb(d, city))
     .then(() => {
       // console.log('wait for geocoding api complete');
@@ -83,15 +83,15 @@ const storeWatson = (city) => {
       goog.geocode(location.label)
       .then((l) => {
         // console.log('Result of goog.geocode in news.js: ', l.json.results);
-          // get the latitutde and longitude out of the center of the
-          // geometry returned by the geocoding api
+        // get the latitutde and longitude out of the center of the
+        // geometry returned by the geocoding api
         const toSearch = l.json.results[0].geometry.location;
-          // models searches by a radius. This is just hard coded
-          // this could be used as user input later
+        // models searches by a radius. This is just hard coded
+        // this could be used as user input later
         toSearch.rad = 25;
       });
-    });
-};
+    })
+);
 
 function handleSearch(req, res, next) {
   const location = JSON.parse(req.query.q);
@@ -110,9 +110,9 @@ function handleSearch(req, res, next) {
   // TURN WATSON ON AND OFF BY:
   // Swapping comments on lines 113/114 with 115
 
-  // storeWatson(city)
-  //   .then(model.news.getByLocation(city))
-  model.news.getByLocation(city)
+  storeWatson(city, location)
+    .then(model.news.getByLocation(city))
+  // model.news.getByLocation(city)
     .then(dbResponse => {
       // console.log('Query Results to getByLocation: ', dbResponse);
       // console.log('handleSearch dbResponse: ', dbResponse);
