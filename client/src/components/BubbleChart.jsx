@@ -1,6 +1,7 @@
 // bubble chart JSX
 
 import React from 'react';
+import ReactDOM from 'react-dom';
 import ReactBubbleChart from 'react-bubble-chart';
 
 let idCounter = 0;
@@ -11,9 +12,17 @@ const getID = () => {
   return stringID;
 };
 
-const border = {
-  // border: '10px solid hsla(120,100%,50%,0.3)'
-  border: '#0000FF'
+const Tooltip = ({ name }) => (
+  <div>{name}</div>
+);
+
+Tooltip.propTypes = {
+  name: React.PropTypes.string
+};
+
+const setTooltip = (elem, data) => {
+  ReactDOM.render(<Tooltip name={data.data.title} />, elem);
+  console.log(elem, data);
 };
 
 console.log('INSIDE BUBBLECHART');
@@ -25,6 +34,8 @@ const BubbleChart = ({ data, handleClick, colors }) => (
     selectedTextColor="#d9d9d9"        // for when bubble is 'selected'
     // fixedDomain={{ min: 0, max: 3 }}   // works with color legend - see react-bubble-chart docs
     onClick={handleClick}              // NEED TO SET CLICK HANDLER HERE FOR OPENING NEWS URL:  onClick={}
+    tooltip
+    tooltipFunc={setTooltip}
     data={
       data.map(d => ({
         _id: getID(),           // string, unique id (required) --> we didn't have this before React
@@ -32,6 +43,7 @@ const BubbleChart = ({ data, handleClick, colors }) => (
         colorValue: d.newsCategory,  // number, used to determine color
         selected: d.selected,        // boolean, uses selectedColor above for bubble if true
         url: d.url,                  // string, url for the article
+        data: d,
         displayText: <img src={d.image} alt="bubble" />
       }))
     }
