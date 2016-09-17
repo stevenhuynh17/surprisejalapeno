@@ -11,6 +11,7 @@ npm-debug.log
 *.swo
 
 ## API Keys ##
+env/config.js
 
 ## Babel / Webpack ##
 client/config
