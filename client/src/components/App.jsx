@@ -4,130 +4,6 @@ import ReactDOM from 'react-dom';
 import Search from './Search.jsx';
 import BubbleChart from './BubbleChart.jsx';
 
-// EXAMPLE FOR TESTING //
-const dummyData = [
-  {
-    storyName: 'example storyname 1',
-    url: 'https://www.google.com/',
-    rating: 22,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 2',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 2
-  },
-  {
-    storyName: 'example storyname 3',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 4
-  },
-  {
-    storyName: 'example storyname 4',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 3
-  },
-  {
-    storyName: 'example storyname 5',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 6',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 7',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 2
-  },
-  {
-    storyName: 'example storyname 8',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 9',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 14',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 2
-  },
-  {
-    storyName: 'example storyname 24',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 34',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 44',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 54',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 64',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 74',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 84',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 94',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 64',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 74',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  }
-];
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -144,16 +20,6 @@ class App extends React.Component {
     };
 
     console.log(getRating());
-
-    // iterate through story objects and assign random category and rating
-    dummyData.forEach((storyObj) => {
-      const testObj = storyObj;
-      const category1 = getCategory();
-      const rating = getRating();
-      testObj.newsCategory = category1;
-      testObj.rating = rating;
-    });
-    // /////end testing///////////
 
     this.state = {
       location: '',
@@ -185,7 +51,7 @@ class App extends React.Component {
       data: { q: locObj },
       success: (data) => {
         // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
-
+        console.log('Success fetching data from /query: ', data);
         // to assign a random category (will come from db later)
         const getCategory = () => Math.floor(Math.random() * 4);
 
