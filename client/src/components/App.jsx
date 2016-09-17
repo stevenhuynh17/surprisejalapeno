@@ -214,8 +214,6 @@ class App extends React.Component {
   //   this.setState({ d3: NationalMap });
   // }
 
-
-  // STEP 2: Make the AJAX call.
   getNewsByLocation(loc) {
     console.log('inside getNewsByLocation');
     console.log('location: ', loc);
@@ -233,10 +231,7 @@ class App extends React.Component {
       data: { q: locObj },
       success: (data) => {
         // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
-
-        // to assign a random category (will come from db later)
-        const getCategory = () => Math.floor(Math.random() * 4);
-
+        console.log('WATSON DATA: ', data);
         // to assign a random rating (will come from db later)
         const getRating = () => {
           const ratings = [4, 6, 8, 10, 11, 8, 20];
@@ -251,31 +246,36 @@ class App extends React.Component {
         let reqCount = 0;
         data.forEach((storyObj) => {
           const testObj = storyObj;
-          const category1 = getCategory();
           const rating = getRating();
-          testObj.newsCategory = category1;
-          testObj.newsCategory = category1;
           testObj.rating = rating;
 
           reqCount++;
-
+          // Don't know why, but adding rejectUnauthorized: false makes the circles load.
           $.ajax({
             method: 'GET',
-            url: `http://api.giphy.com/v1/gifs/search`,
+            url: 'http://api.giphy.com/v1/gifs/search',
             dataType: 'json',
             data: {
               q: storyObj.title,
               api_key: 'dc6zaTOxFJmzC'
             },
+            rejectUnauthorized: false,
             success: (d) => {
+              console.log('GIF DATA: ', d);
               testObj.image = d.data[0].images.original.url;
               reqCount--;
               if (reqCount === 0) {
                 this.setState({ data });
               }
+            },
+            error: (err) => {
+              console.log('Get GIF error: ', err);
             }
-          }); // End of giphy AJAX call
+          });
         });
+
+        // changed from data.value
+        this.setState({ data });
       },
 
       error: (err) => {
