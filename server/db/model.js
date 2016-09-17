@@ -20,7 +20,7 @@ module.exports = {
       const geo = req.body;
       // loc should be object {lat, lng, rad}
       console.log('loc object recevied by testGetByLocation: ', geo);
-      const getByLocation = (loc)=> {
+      const getByLocation = (loc) => {
         console.log(db.sequelize.fn(`*, (3959 * acos(cos(radians(${loc.lat})) * cos(radians(lat)) * cos(radians(lng) - radians(${loc.lng})) + sin(radians(${loc.lat})) * sin(radians(lat)))) as distance`));
       };
       getByLocation(geo)
