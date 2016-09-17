@@ -44,6 +44,8 @@ const BubbleChart = ({ data, handleClick }) => (
     selectedTextColor="#d9d9d9"        // for when bubble is 'selected'
     fixedDomain={{ min: 0, max: 3 }}   // works with color legend - see react-bubble-chart docs
     onClick={handleClick}              // NEED TO SET CLICK HANDLER HERE FOR OPENING NEWS URL:  onClick={}
+    tooltip={true}
+    tooltipFunc={(a) => console.log('this is a test', a)}
     data={
       data.map(d => ({
         _id: getID(),           // string, unique id (required) --> we didn't have this before React
