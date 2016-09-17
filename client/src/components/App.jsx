@@ -75,10 +75,10 @@ class App extends React.Component {
     const locObj = JSON.stringify(loc);
 
     // Put the socket emit within this
-    const socket = io.connect('localhost:3000');
-    socket.on('connect', (data) => {
-      socket.emit('join', 'YOLO');
-    });
+    // const socket = io.connect('localhost:3000');
+    // socket.on('connect', (data) => {
+    //   socket.emit('join', 'YOLO');
+    // });
 
     $.ajax({
       method: 'GET',
@@ -97,6 +97,14 @@ class App extends React.Component {
           const rating = ratings[Math.floor(Math.random() * ratings.length)];
           return rating;
         };
+
+        // const roundSentiment = (data.sentiment) => {
+        //   const value = Math.round(((data.sentiment - 290);
+        //   if (num <=0) {
+        //     return [360, value];
+        //   }
+        //   return [250, value];
+        // };
 
         data = data.slice(0, 50);
         console.log('rendering', data.length, ' gifs');
