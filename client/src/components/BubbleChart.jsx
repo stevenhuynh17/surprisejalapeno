@@ -49,10 +49,11 @@ Tooltip.propTypes = {
 };
 
 const setTooltip = (elem, data) => {
-  ReactDOM.render(<Tooltip
+  ReactDOM.render(
+    <Tooltip
       name={data.data.title}
       description={data.data.description}
-      />, elem);
+    />, elem);
   console.log(elem, data);
 };
 
