@@ -22,8 +22,9 @@ const News = sequelize.define('news', {
   published: { type: Sequelize.STRING },
   lat: { type: Sequelize.DECIMAL(10, 8) },
   lng: { type: Sequelize.DECIMAL(11, 8) },
+  queryLoc: { type: Sequelize.STRING }
 });
 
 News.sync();
 
-module.exports = News;
+module.exports = { News, sequelize };

@@ -8,145 +8,6 @@ import BubbleChart from './BubbleChart.jsx';
 
 // const USA = rd3.Component;
 
-// EXAMPLE FOR TESTING //
-const colorLegend = [
-  // COLOR SCALE EXAMPLE - WILL UPDATE
-  // reds from dark to light
-  { color: '#ff291f', textColor: '#fee0d2', text: 'Negative' },
-  { color: '#cb181d', textColor: '#fee0d2' },
-  '#fb6a4a',
-  '#fcbba1',
-  // neutral grey
-  { color: '#b0b6aa', text: 'Neutral' },
-  // // blues from light to dark
-  '#c6dbef',
-  '#6baed6',
-  { color: '#2171b5', textColor: '#deebf7' },
-  { color: '#08306b', textColor: '#deebf7', text: 'Positive' }];
-
-const dummyData = [
-  {
-    storyName: 'example storyname 1',
-    url: 'https://www.google.com/',
-    rating: 22,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 2',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 2
-  },
-  {
-    storyName: 'example storyname 3',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 4
-  },
-  {
-    storyName: 'example storyname 4',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 3
-  },
-  {
-    storyName: 'example storyname 5',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 6',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 7',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 2
-  },
-  {
-    storyName: 'example storyname 8',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 9',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 14',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 2
-  },
-  {
-    storyName: 'example storyname 24',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 34',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 44',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 54',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 64',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 74',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 84',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 94',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 64',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  },
-  {
-    storyName: 'example storyname 74',
-    url: 'https://www.google.com/',
-    rating: 14,
-    newsCategory: 1
-  }
-];
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -181,20 +42,6 @@ class App extends React.Component {
     //   }
     //   return sentimentLevel[0];
     // };
-
-    // iterate through story objects and assign random category and rating
-    // dummyData.forEach((storyObj) => {
-    //   const testObj = storyObj;
-    //   const category1 = getCategory();
-    //   const rating = getRating();
-    //   const score = moodFactor(storyObj);
-    //   testObj.newsCategory = category1;
-    //   testObj.rating = rating;
-    //   testObj.sentimentScore = score;
-    // });
-
-    // /////end testing///////////
-    console.log('test');
 
     this.state = {
       location: '',
@@ -232,7 +79,10 @@ class App extends React.Component {
       data: { q: locObj },
       success: (data) => {
         // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
-        console.log('WATSON DATA: ', data);
+        console.log('Success fetching data from /query: ', data);
+        // to assign a random category (will come from db later)
+        const getCategory = () => Math.floor(Math.random() * 4);
+
         // to assign a random rating (will come from db later)
         const getRating = () => {
           const ratings = [4, 6, 8, 10, 11, 8, 20];
