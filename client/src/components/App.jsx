@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import io from 'socket.io-client';
 
 import Search from './Search.jsx';
 import BubbleChart from './BubbleChart.jsx';
@@ -44,65 +45,72 @@ class App extends React.Component {
     /* global $ */
     const locObj = JSON.stringify(loc);
 
-    $.ajax({
-      method: 'GET',
-      url: '/query',
-      dataType: 'json',
-      data: { q: locObj },
-      success: (data) => {
-        // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
-        console.log('Success fetching data from /query: ', data);
-        // to assign a random category (will come from db later)
-        const getCategory = () => Math.floor(Math.random() * 4);
-
-        // to assign a random rating (will come from db later)
-        const getRating = () => {
-          const ratings = [4, 6, 8, 10, 11, 8, 20];
-          const rating = ratings[Math.floor(Math.random() * ratings.length)];
-          return rating;
-        };
-
-        data = data.slice(0, 50);
-        console.log('rendering', data.length, ' gifs');
-
-        // iterate through story objects and assign random category and rating
-        let reqCount = 0;
-        data.forEach((storyObj) => {
-          const testObj = storyObj;
-          const category1 = getCategory();
-          const rating = getRating();
-          testObj.newsCategory = category1;
-          testObj.newsCategory = category1;
-          testObj.rating = rating;
-
-          reqCount++;
-
-          $.ajax({
-            method: 'GET',
-            url: `http://api.giphy.com/v1/gifs/search`,
-            dataType: 'json',
-            data: {
-              q: storyObj.title,
-              api_key: 'dc6zaTOxFJmzC'
-            },
-            success: (d) => {
-              testObj.image = d.data[0].images.original.url;
-              reqCount--;
-              if (reqCount === 0) {
-                this.setState({ data });
-              }
-            }
-          });
-        });
-
-        // changed from data.value
-        this.setState({ data });
-      },
-
-      error: (err) => {
-        console.log('getNews err ', err);
-      }
+    // Put the socket emit within this
+    const socket = io.connect('localhost:3000');
+    socket.on('connect', (data) => {
+      socket.emit('join', 'YOLO');
     });
+
+
+    // $.ajax({
+    //   method: 'GET',
+    //   url: '/query',
+    //   dataType: 'json',
+    //   data: { q: locObj },
+    //   success: (data) => {
+    //     // data = dummyData; //FOR TESTING - NEED TO REMOVE THIS LINE
+    //     console.log('Success fetching data from /query: ', data);
+    //     // to assign a random category (will come from db later)
+    //     const getCategory = () => Math.floor(Math.random() * 4);
+
+    //     // to assign a random rating (will come from db later)
+    //     const getRating = () => {
+    //       const ratings = [4, 6, 8, 10, 11, 8, 20];
+    //       const rating = ratings[Math.floor(Math.random() * ratings.length)];
+    //       return rating;
+    //     };
+
+    //     data = data.slice(0, 50);
+    //     console.log('rendering', data.length, ' gifs');
+
+    //     // iterate through story objects and assign random category and rating
+    //     let reqCount = 0;
+    //     data.forEach((storyObj) => {
+    //       const testObj = storyObj;
+    //       const category1 = getCategory();
+    //       const rating = getRating();
+    //       testObj.newsCategory = category1;
+    //       testObj.newsCategory = category1;
+    //       testObj.rating = rating;
+
+    //       reqCount++;
+
+    //       $.ajax({
+    //         method: 'GET',
+    //         url: `http://api.giphy.com/v1/gifs/search`,
+    //         dataType: 'json',
+    //         data: {
+    //           q: storyObj.title,
+    //           api_key: 'dc6zaTOxFJmzC'
+    //         },
+    //         success: (d) => {
+    //           testObj.image = d.data[0].images.original.url;
+    //           reqCount--;
+    //           if (reqCount === 0) {
+    //             this.setState({ data });
+    //           }
+    //         }
+    //       });
+    //     });
+
+    //     // changed from data.value
+    //     this.setState({ data });
+    //   },
+
+    //   error: (err) => {
+    //     console.log('getNews err ', err);
+    //   }
+    // });
   }
 
   handleSuggestionSelect(e) {
