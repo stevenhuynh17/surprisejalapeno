@@ -15,9 +15,9 @@ const getByPlace = (place) => {
   // See the alchemy news api for what options are available
   let queries = {
     outputMode: 'json',
-    start: 'now-1d',
+    start: 'now-4d',
     dedup: 1,
-    dedupThreshold: 1.0,
+    dedupThreshold: 0,
     end: 'now',
     // count: 5, // count is how many watson returns
     // HOWEVER, they will charge many more transactions

@@ -71,6 +71,28 @@ const findCity = (arr) => {
   return city;
 };
 
+const storeWatson = (city, location) => (
+  // sherlock is the Watson API file
+  // give it the word from the query
+  // send the results to the db after some light parsing and then
+  sherlock.getByPlace(city)
+    .then(d => resultsToDb(d, city))
+    .then(() => {
+      // console.log('wait for geocoding api complete');
+      // wait for the geocoding api to return (if it hasn't already)
+      goog.geocode(location.label)
+      .then((l) => {
+        // console.log('Result of goog.geocode in news.js: ', l.json.results);
+        // get the latitutde and longitude out of the center of the
+        // geometry returned by the geocoding api
+        const toSearch = l.json.results[0].geometry.location;
+        // models searches by a radius. This is just hard coded
+        // this could be used as user input later
+        toSearch.rad = 25;
+      });
+    })
+);
+
 function handleSearch(req, res, next) {
   const location = JSON.parse(req.query.q);
   const address = location.gmaps.address_components;
@@ -85,33 +107,17 @@ function handleSearch(req, res, next) {
   // Remove articles that have Instance.dataValues.isNewRecord: false
   // Send remaining articles to client
 
+  // TURN WATSON ON AND OFF BY:
+  // Swapping comments on lines 113/114 with 115
 
-  // sherlock is the Watson API file
-  // give it the word from the query
-  // send the results to the db after some light parsing and then
-  sherlock.getByPlace(city)
-    .then(d => resultsToDb(d, city))
-    .then(() => {
-      // console.log('wait for geocoding api complete');
-      // wait for the geocoding api to return (if it hasn't already)
-      goog.geocode(location.label)
-      .then((l) => {
-        // console.log('Result of goog.geocode in news.js: ', l.json.results);
-          // get the latitutde and longitude out of the center of the
-          // geometry returned by the geocoding api
-        const toSearch = l.json.results[0].geometry.location;
-          // models searches by a radius. This is just hard coded
-          // this could be used as user input later
-        toSearch.rad = 25;
-        // Currently querying EVERYTHING, but should change to location
-        model.news.getByLocation(city)
-          .then(dbResponse => {
-            // console.log('Query Results to getByLocation: ', dbResponse);
-            // console.log('handleSearch dbResponse: ', dbResponse);
-            // send the response from the db getbylocation as json
-            res.json(dbResponse);
-          });
-      });
+  storeWatson(city, location)
+    .then(model.news.getByLocation(city))
+  // model.news.getByLocation(city)
+    .then(dbResponse => {
+      // console.log('Query Results to getByLocation: ', dbResponse);
+      // console.log('handleSearch dbResponse: ', dbResponse);
+      // send the response from the db getbylocation as json
+      res.json(dbResponse);
     })
     .catch(e => next(e));
 }
